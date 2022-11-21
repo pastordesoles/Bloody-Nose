@@ -1,46 +1,62 @@
-# Getting Started with Create React App
+# Bloody Nose
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
+> Find your perfect martial arts session with Bloody Nose.
+> Live demo [_here_](https://xavier-sans-final-project-202209-bcn.netlify.app/). <!-- If you have the project hosted somewhere, include the link here. -->
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- [General Info](#general-information)
+- [Technologies Used](#technologies-used)
+- [Features](#features)
+- [Screenshots](#screenshots)
+- [Setup](#setup)
+- [Project Status](#project-status)
+- [Room for Improvement](#room-for-improvement)
+- [Acknowledgements](#acknowledgements)
+- [Contact](#contact)
+<!-- * [License](#license) -->
 
-### `npm start`
+## General Information
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This is my final project for the ISDI Coders web development bootcamp 2022-09 BCN Edition.
+It's an application that allows you to post martials arts training sessions and look for partners to help you improve in the discipline of your choice.
+As a martial arts enthusiast myself, I sometimes struggle to find training partners whenever I'm not in my dojo or when I try other styles just for fun.
+With this app I want to create a hub for people to help them find someone near them and never stop training.
 
-The page will reload if you make edits.\
+## Technologies Used
+
+- React
+
+## Features
+
+## Screenshots
+
+## Setup
+
+You will find all the dependencies at the _package.json_ file. Run the command _npm install_ in your CLI to install them.
+
+The command _npm run start_ runs the app in the development mode.
+Open http://localhost:3000 to view it in the browser.
+
+The page will reload if you make edits.
 You will also see any lint errors in the console.
 
-### `npm test`
+## Project Status
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Project is: _in progress_
 
-### `npm run build`
+## Room for Improvement
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Room for improvement:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To do:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Acknowledgements
 
-### `npm run eject`
+Give credit here.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Many thanks to everyone who supported me along the road that took me here. What a hell of a ride.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Contact
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Created by [Xavi](https://www.linkedin.com/in/xaviersansb/) - feel free to contact me!

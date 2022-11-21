@@ -17,5 +17,4 @@ jobs:
       - name: Testing
         run: npm test
         env:
-          REACT_APP_API_URL_LOCAL: ${{https://berto-xavi-202209-w6chwe.herokuapp.com/robots/}}
-          TOKKEN_AUTH: ${{benderElQueOfende}}
+          REACT_APP_API_URL: ${{secrets.REACT_APP_API_URL}}

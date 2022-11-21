@@ -10,7 +10,7 @@
 // To learn more about the benefits of this model and instructions on how to
 // opt-in, read https://cra.link/PWA
 
-const { log, error } = console;
+const { log, error: logError } = console;
 
 const isLocalhost = Boolean(
   window.location.hostname === "localhost" ||
@@ -101,7 +101,7 @@ function registerValidSW(swUrl: string, config?: Config) {
       };
     })
     .catch((error) => {
-      error("Error during service worker registration:", error);
+      logError("Error during service worker registration:", error);
     });
 }
 
@@ -140,7 +140,7 @@ export function unregister() {
         registration.unregister();
       })
       .catch((error) => {
-        error(error.message);
+        logError(error.message);
       });
   }
 }

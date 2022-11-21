@@ -53,8 +53,6 @@ To do:
 
 ## Acknowledgements
 
-Give credit here.
-
 - Many thanks to everyone who supported me along the road that took me here. What a hell of a ride.
 
 ## Contact

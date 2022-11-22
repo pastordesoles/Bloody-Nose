@@ -16,7 +16,7 @@ const handlers = [
       );
     }
 
-    return res(ctx.status(201), ctx.json({ user }));
+    return res(ctx.status(201), ctx.json({}));
   }),
 ];
 

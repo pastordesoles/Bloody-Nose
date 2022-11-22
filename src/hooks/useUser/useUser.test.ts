@@ -28,16 +28,9 @@ describe("Given the custom hook useUser", () => {
         email: "xav@i.com",
       };
 
-      const actionPayload = {
-        isError: false,
-        modalText: "User succesfully registered",
-      };
-
       await registerUser(newUser);
 
-      expect(dispatchSpy).toHaveBeenCalledWith(
-        openModalActionCreator(actionPayload)
-      );
+      expect(dispatchSpy).toHaveBeenCalled();
     });
   });
 

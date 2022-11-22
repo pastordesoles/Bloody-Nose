@@ -1,5 +1,5 @@
 const userRoutes = {
-  usersRoute: "/users",
+  usersRoute: "users",
   registerRoute: "/register",
 };
 

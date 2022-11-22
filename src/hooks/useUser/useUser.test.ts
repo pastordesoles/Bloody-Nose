@@ -1,6 +1,5 @@
 import { renderHook } from "@testing-library/react";
 import { openModalActionCreator } from "../../redux/features/uiSlice/uiSlice";
-import { store } from "../../redux/store";
 import ProviderWrapper from "../../test-utils/ProviderWrapper";
 import { UserRegisterCredentials } from "../../hooks/useUser/types";
 import useUser from "./useUser";
@@ -28,9 +27,16 @@ describe("Given the custom hook useUser", () => {
         email: "xav@i.com",
       };
 
+      const actionPayload = {
+        isError: false,
+        modalText: "User succesfully registered",
+      };
+
       await registerUser(newUser);
 
-      expect(dispatchSpy).toHaveBeenCalled();
+      expect(dispatchSpy).toHaveBeenCalledWith(
+        openModalActionCreator(actionPayload)
+      );
     });
   });
 

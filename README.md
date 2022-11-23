@@ -26,8 +26,12 @@ With this app I want to create a hub for people to help them find someone near t
 ## Technologies Used
 
 - React
+- StyledComponents
+- Axios
 
 ## Features
+
+- Register component created with Material UI.
 
 ## Screenshots
 

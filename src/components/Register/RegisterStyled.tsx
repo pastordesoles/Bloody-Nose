@@ -5,12 +5,12 @@ const RegisterStyled = styled(Container)`
     color: #d3d4d9;
     font-family: Coustard;
     font-weight: bold;
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 
   .title__register {
     color: #eca72c;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: bold;
     font-family: Montserrat;
   }

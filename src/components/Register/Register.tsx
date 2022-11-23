@@ -1,4 +1,5 @@
 import { Paper, Button, TextField, Box, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import { UserRegisterCredentials } from "../../hooks/useUser/types";
 import useUser from "../../hooks/useUser/useUser";
@@ -140,7 +141,10 @@ const RegisterForm = (): JSX.Element => {
           </Button>
 
           <Typography component="span">
-            Already have an account? <span className="login">Login here</span>
+            Already have an account?{" "}
+            <span className="login">
+              <Link to={"/login"}>Login here</Link>
+            </span>
           </Typography>
         </Paper>
       </RegisterFormStyled>

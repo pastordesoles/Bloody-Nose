@@ -2,11 +2,11 @@ import styled from "styled-components";
 
 const RegisterPageStyled = styled.main`
   height: 100vh;
-  background-image: url("/images/bogdan-yukhymchuk-XmvuWRDimrg-unsplash.jpg");
+  background-image: url("/images/mobileBlackGloves.webp");
   background-size: cover;
 
   @media (min-width: 500px) {
-    background-image: url("/images/kenny-eliason-WwrQnL0Gi1c-unsplash.jpg");
+    background-image: url("/images/MainPageRedGloves.webp");
   }
 `;
 

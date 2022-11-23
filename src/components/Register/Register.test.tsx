@@ -1,13 +1,19 @@
-import { render, screen } from "@testing-library/react";
-import { Provider } from "react-redux";
-import { BrowserRouter } from "react-router-dom";
-import { store } from "../../redux/store";
+import { screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { renderWithProviders } from "../../test-utils/renderWithProviders";
 import Register from "./Register";
 
-describe("Given the Register form component", () => {
-  describe("When it's renderer", () => {
-    test("Then it should show 4 text inputs: Username,Alias,Email,Password and button 'Sign up'", () => {
+const mockLogin = jest.fn();
+
+jest.mock("../../hooks/useUser/useUser", () => {
+  return () => ({
+    registerUser: mockLogin,
+  });
+});
+
+describe("Given a Register form component", () => {
+  describe("When it's rendered", () => {
+    test("Then it should show 3 text inputs: Username, Email, Password and a 'REGISTER' button", () => {
       const labelUsername = "username";
       const labelEmail = "email";
       const labelPassword = "password";
@@ -27,6 +33,23 @@ describe("Given the Register form component", () => {
       expect(inputEmail).toBeInTheDocument();
       expect(inputUsername).toBeInTheDocument();
       expect(inputPassword).toBeInTheDocument();
+    });
+  });
+
+  describe("When its rendered and its 'REGISTER' button is clicked", () => {
+    test("Then the form should be submitted", async () => {
+      renderWithProviders(<Register />);
+
+      const username = screen.queryByLabelText("username") as HTMLElement;
+      const password = screen.queryByLabelText("password") as HTMLElement;
+      const email = screen.queryByLabelText("email") as HTMLElement;
+      await userEvent.type(username, "admin");
+      await userEvent.type(password, "adminadmin");
+      await userEvent.type(email, "xav@i.com");
+      const button = screen.queryByRole("button")!;
+      await userEvent.click(button);
+
+      expect(mockLogin).toHaveBeenCalled();
     });
   });
 });

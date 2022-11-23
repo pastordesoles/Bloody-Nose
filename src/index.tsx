@@ -1,17 +1,21 @@
 import React from "react";
+import { CssBaseline } from "@mui/material";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import App from "./components/App/App";
 import reportWebVitals from "./reportWebVitals";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
+
 const container = document.getElementById("root")!;
 const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <CssBaseline>
+        <App />
+      </CssBaseline>
     </Provider>
   </React.StrictMode>
 );

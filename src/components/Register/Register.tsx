@@ -1,11 +1,4 @@
-import {
-  Paper,
-  Button,
-  TextField,
-  Box,
-  Typography,
-  Container,
-} from "@mui/material";
+import { Paper, Button, TextField, Box, Typography } from "@mui/material";
 import { useState } from "react";
 import { UserRegisterCredentials } from "../../hooks/useUser/types";
 import useUser from "../../hooks/useUser/useUser";

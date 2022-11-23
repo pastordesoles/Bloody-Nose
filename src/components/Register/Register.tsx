@@ -143,7 +143,9 @@ const RegisterForm = (): JSX.Element => {
           <Typography component="span">
             Already have an account?{" "}
             <span className="login">
-              <Link to={"/login"}>Login here</Link>
+              <Link to={"/login"} className="login">
+                Login here
+              </Link>
             </span>
           </Typography>
         </Paper>

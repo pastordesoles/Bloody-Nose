@@ -28,6 +28,7 @@ const LoginStyled = styled(Container)`
 
   .register {
     color: #eca72c;
+    text-decoration: none;
   }
 `;
 

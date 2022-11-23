@@ -38,10 +38,11 @@ const RegisterForm = (): JSX.Element => {
   return (
     <Box
       sx={{
-        marginTop: 2,
+        paddingTop: 2,
         display: "flex",
         flexDirection: "column",
-        alignItems: "center",
+        justifyContent: "center",
+        height: "100%",
       }}
     >
       <RegisterFormStyled
@@ -51,7 +52,6 @@ const RegisterForm = (): JSX.Element => {
           justifyContent: "center",
           alignItems: "center",
           paddingBottom: 1.5,
-
           gap: 0.5,
         }}
       >
@@ -66,9 +66,10 @@ const RegisterForm = (): JSX.Element => {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            padding: 2.9,
+            padding: 2,
             gap: 2,
-            width: "50%",
+            width: "100%",
+            maxWidth: "500px",
           }}
         >
           <Typography component="h1" className="title">
@@ -90,7 +91,6 @@ const RegisterForm = (): JSX.Element => {
             onChange={handleFormChange}
             className="input"
             variant="filled"
-            color="info"
             sx={{
               input: {
                 color: "#d3d4d9",

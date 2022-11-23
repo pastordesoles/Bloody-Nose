@@ -6,6 +6,7 @@ import { store } from "./redux/store";
 import App from "./components/App/App";
 import reportWebVitals from "./reportWebVitals";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
+import { BrowserRouter } from "react-router-dom";
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);
@@ -14,7 +15,9 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <CssBaseline>
-        <App />
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
       </CssBaseline>
     </Provider>
   </React.StrictMode>

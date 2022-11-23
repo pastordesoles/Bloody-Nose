@@ -1,27 +1,24 @@
 import { screen } from "@testing-library/react";
 import { renderWithProviders } from "../../test-utils/renderWithProviders";
-import RegisterPage from "./RegisterPage";
+import LoginPage from "./LoginPage";
 
-describe("Given a register page", () => {
+describe("Given a login page", () => {
   describe("When it's rendered", () => {
-    test("Then it should show a register form with the label 'username', 'password', 'email' and a 'REGISTER' button", () => {
+    test("Then it should show a register form with the label 'username', 'password' and a 'SIGN IN' button", () => {
       const labelUsername = "username";
-      const labelEmail = "email";
       const labelPassword = "password";
-      const nameButton = "REGISTER";
+      const nameButton = "SIGN IN";
 
-      renderWithProviders(<RegisterPage />);
+      renderWithProviders(<LoginPage />);
 
       const buttonSignUp = screen.getByRole("button", {
         name: nameButton,
       });
 
       const inputUsername = screen.getByLabelText(labelUsername);
-      const inputEmail = screen.getByLabelText(labelEmail);
       const inputPassword = screen.getByLabelText(labelPassword);
 
       expect(buttonSignUp).toBeInTheDocument();
-      expect(inputEmail).toBeInTheDocument();
       expect(inputUsername).toBeInTheDocument();
       expect(inputPassword).toBeInTheDocument();
     });

@@ -1,12 +1,12 @@
 import { Paper, Button, TextField, Box, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { UserRegisterCredentials } from "../../hooks/useUser/types";
 import useUser from "../../hooks/useUser/useUser";
-import RegisterFormStyled from "./RegisterStyled";
+import LoginFormStyled from "./LoginStyled";
 
-const RegisterForm = (): JSX.Element => {
-  const { registerUser } = useUser();
+const LoginForm = (): JSX.Element => {
+  const { loginUser } = useUser();
 
   const userData: UserRegisterCredentials = {
     username: "",
@@ -31,9 +31,8 @@ const RegisterForm = (): JSX.Element => {
     const formDataToSubmit = {
       username: initialForm.username,
       password: initialForm.password,
-      email: initialForm.email,
     };
-    await registerUser(formDataToSubmit);
+    await loginUser(formDataToSubmit);
   };
 
   return (
@@ -46,7 +45,7 @@ const RegisterForm = (): JSX.Element => {
         height: "100%",
       }}
     >
-      <RegisterFormStyled
+      <LoginFormStyled
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -68,7 +67,7 @@ const RegisterForm = (): JSX.Element => {
             justifyContent: "center",
             alignItems: "center",
             padding: 2,
-            gap: 2,
+            gap: 1.7,
             width: "100%",
             maxWidth: "500px",
           }}
@@ -77,7 +76,7 @@ const RegisterForm = (): JSX.Element => {
             Bloody Nose
           </Typography>
           <Typography component="h2" className="title__register">
-            Register
+            SIGN IN
           </Typography>
 
           <TextField
@@ -102,21 +101,6 @@ const RegisterForm = (): JSX.Element => {
           <TextField
             required
             fullWidth
-            name="email"
-            aria-label="email"
-            type="text"
-            id="email"
-            autoComplete="off"
-            onChange={handleFormChange}
-            className="input"
-            sx={{ input: { color: "#d3d4d9" } }}
-            variant="filled"
-            label="Email"
-            InputLabelProps={{ style: { color: "#d3d4d9" } }}
-          />
-          <TextField
-            required
-            fullWidth
             name="password"
             aria-label="password"
             label="Password"
@@ -130,28 +114,28 @@ const RegisterForm = (): JSX.Element => {
             InputLabelProps={{ style: { color: "#d3d4d9" } }}
           />
           <Button
-            className="register-button"
+            className="login-button"
             type="submit"
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2, padding: "15px" }}
             style={{ background: "#04395E", fontSize: "1,5rem" }}
           >
-            REGISTER
+            SIGN IN
           </Button>
 
           <Typography component="span">
-            Already have an account?{" "}
-            <span className="login">
-              <Link to={"/login"} className="login">
-                Login here
+            You don't have an account?
+            <span className="register">
+              <Link to={"/"} className="register">
+                Register here
               </Link>
             </span>
           </Typography>
         </Paper>
-      </RegisterFormStyled>
+      </LoginFormStyled>
     </Box>
   );
 };
 
-export default RegisterForm;
+export default LoginForm;

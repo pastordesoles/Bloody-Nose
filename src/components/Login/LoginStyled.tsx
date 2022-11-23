@@ -1,6 +1,6 @@
 import { Container, styled } from "@mui/material";
 
-const RegisterStyled = styled(Container)`
+const LoginStyled = styled(Container)`
   .title {
     color: #d3d4d9;
     font-family: Coustard;
@@ -26,10 +26,10 @@ const RegisterStyled = styled(Container)`
     color: #d3d4d9;
   }
 
-  .login {
+  .register {
     color: #eca72c;
     text-decoration: none;
   }
 `;
 
-export default RegisterStyled;
+export default LoginStyled;

@@ -125,7 +125,7 @@ const LoginForm = (): JSX.Element => {
           </Button>
 
           <Typography component="span">
-            You don't have an account?
+            You don't have an account?{" "}
             <span className="register">
               <Link to={"/"} className="register">
                 Register here

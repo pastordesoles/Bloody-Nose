@@ -38,8 +38,8 @@ const useUser = () => {
     } catch (error: unknown) {
       dispatch(
         openModalActionCreator({
-          isError: false,
-          modalText: "User already in the database",
+          isError: true,
+          modalText: "Register error",
         })
       );
     }

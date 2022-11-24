@@ -5,6 +5,7 @@ import { UserRegisterCredentials } from "../../hooks/useUser/types";
 import useUser from "../../hooks/useUser/useUser";
 import RegisterFormStyled from "./RegisterStyled";
 import FormButton from "../FormButton/FormButton";
+import commonUserFormInputs from "../../utils/commonUserFormInputs/commonUserFormInputs";
 
 const RegisterForm = (): JSX.Element => {
   const { registerUser } = useUser();
@@ -81,25 +82,7 @@ const RegisterForm = (): JSX.Element => {
             Register
           </Typography>
 
-          <TextField
-            required
-            fullWidth
-            name="username"
-            aria-label="username"
-            label="Username"
-            type="text"
-            id="username"
-            autoComplete="off"
-            onChange={handleFormChange}
-            className="input"
-            variant="filled"
-            sx={{
-              input: {
-                color: "#d3d4d9",
-              },
-            }}
-            InputLabelProps={{ style: { color: "#d3d4d9" } }}
-          />
+          {commonUserFormInputs(handleFormChange)}
           <TextField
             required
             fullWidth
@@ -115,21 +98,7 @@ const RegisterForm = (): JSX.Element => {
             label="Email"
             InputLabelProps={{ style: { color: "#d3d4d9" } }}
           />
-          <TextField
-            required
-            fullWidth
-            name="password"
-            aria-label="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="off"
-            variant="filled"
-            onChange={handleFormChange}
-            className="input"
-            sx={{ input: { color: "#d3d4d9" } }}
-            InputLabelProps={{ style: { color: "#d3d4d9" } }}
-          />
+
           <FormButton message="REGISTER" />
 
           <Typography component="span">

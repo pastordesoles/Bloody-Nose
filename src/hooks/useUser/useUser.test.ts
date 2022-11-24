@@ -83,8 +83,8 @@ describe("Given the custom hook useUser", () => {
       };
 
       const actionPayload = {
-        isError: false,
-        modalText: "User already in the database",
+        isError: true,
+        modalText: "Register error",
       };
 
       await registerUser(registeredUser);

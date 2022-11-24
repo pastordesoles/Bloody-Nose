@@ -1,7 +1,7 @@
 import { Paper, Box, Typography } from "@mui/material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { UserRegisterCredentials } from "../../hooks/useUser/types";
+import { UserCredentials } from "../../hooks/useUser/types";
 import useUser from "../../hooks/useUser/useUser";
 import LoginFormStyled from "./LoginStyled";
 import FormButton from "../FormButton/FormButton";
@@ -10,10 +10,9 @@ import commonUserFormInputs from "../../utils/commonUserFormInputs/commonUserFor
 const LoginForm = (): JSX.Element => {
   const { loginUser } = useUser();
 
-  const userData: UserRegisterCredentials = {
+  const userData: UserCredentials = {
     username: "",
     password: "",
-    email: "",
   };
 
   const [initialForm, setData] = useState(userData);

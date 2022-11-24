@@ -17,6 +17,7 @@ function App() {
         <Route path="/" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
       </Routes>
+      <Suspense />
       {uiOptions.showModal && !uiOptions.isError && (
         <Toast severity="success" message={uiOptions.modalText} />
       )}

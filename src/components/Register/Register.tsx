@@ -1,9 +1,10 @@
-import { Paper, Button, TextField, Box, Typography } from "@mui/material";
+import { Paper, TextField, Box, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { UserRegisterCredentials } from "../../hooks/useUser/types";
 import useUser from "../../hooks/useUser/useUser";
 import RegisterFormStyled from "./RegisterStyled";
+import FormButton from "../FormButton/FormButton";
 
 const RegisterForm = (): JSX.Element => {
   const { registerUser } = useUser();
@@ -129,16 +130,7 @@ const RegisterForm = (): JSX.Element => {
             sx={{ input: { color: "#d3d4d9" } }}
             InputLabelProps={{ style: { color: "#d3d4d9" } }}
           />
-          <Button
-            className="register-button"
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2, padding: "15px" }}
-            style={{ background: "#04395E", fontSize: "1,5rem" }}
-          >
-            REGISTER
-          </Button>
+          <FormButton message="REGISTER" />
 
           <Typography component="span">
             Already have an account?{" "}

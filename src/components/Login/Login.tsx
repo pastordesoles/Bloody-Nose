@@ -1,9 +1,10 @@
-import { Paper, Button, TextField, Box, Typography } from "@mui/material";
+import { Paper, TextField, Box, Typography } from "@mui/material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { UserRegisterCredentials } from "../../hooks/useUser/types";
 import useUser from "../../hooks/useUser/useUser";
 import LoginFormStyled from "./LoginStyled";
+import FormButton from "../FormButton/FormButton";
 
 const LoginForm = (): JSX.Element => {
   const { loginUser } = useUser();
@@ -113,16 +114,7 @@ const LoginForm = (): JSX.Element => {
             sx={{ input: { color: "#d3d4d9" } }}
             InputLabelProps={{ style: { color: "#d3d4d9" } }}
           />
-          <Button
-            className="login-button"
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2, padding: "15px" }}
-            style={{ background: "#04395E", fontSize: "1,5rem" }}
-          >
-            SIGN IN
-          </Button>
+          <FormButton message="SIGN IN" />
 
           <Typography component="span">
             You don't have an account?{" "}

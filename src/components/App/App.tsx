@@ -12,6 +12,7 @@ function App() {
   return (
     <>
       <Suspense fallback={<Loader />} />
+
       <Routes>
         <Route path="/" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />

@@ -123,7 +123,7 @@ describe("Given the custom hook useUser", () => {
     });
   });
 
-  describe("When its method loginUser is invoked with username 'admin' and correct password 'admin123", () => {
+  describe("When its method loginUser is invoked with username 'xavi' and correct password 'admin123", () => {
     test("Then dispatch should be called with openModalActionCreator and the token should be stored in local storage", async () => {
       const {
         result: {

@@ -1,4 +1,5 @@
 import { Paper, TextField, Box, Typography } from "@mui/material";
+
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { UserRegisterCredentials } from "../../hooks/useUser/types";
@@ -96,6 +97,7 @@ const RegisterForm = (): JSX.Element => {
             sx={{ input: { color: "#d3d4d9" } }}
             variant="filled"
             label="Email"
+            margin="normal"
             InputLabelProps={{ style: { color: "#d3d4d9" } }}
           />
 

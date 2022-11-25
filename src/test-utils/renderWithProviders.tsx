@@ -8,6 +8,7 @@ import { store, RootState } from "../redux/store";
 import { BrowserRouter } from "react-router-dom";
 import { userReducer } from "../redux/features/userSlice/userSlice";
 import { uiReducer } from "../redux/features/uiSlice/uiSlice";
+import { sessionsReducer } from "../redux/features/sessionsSlice/sessionsSlice";
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {
   preloadedState?: PreloadedState<RootState>;
@@ -19,7 +20,7 @@ export const renderWithProviders = (
   {
     preloadedState,
     store = configureStore({
-      reducer: { user: userReducer, ui: uiReducer },
+      reducer: { user: userReducer, ui: uiReducer, sessions: sessionsReducer },
       preloadedState,
     }),
     ...renderOptions

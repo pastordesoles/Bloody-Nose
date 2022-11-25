@@ -28,10 +28,14 @@ With this app I want to create a hub for people to help them find someone near t
 - React
 - StyledComponents
 - Axios
+- Material UI
 
 ## Features
 
 - Register component created with Material UI.
+- Login component created with Material UI
+- Modals for errors and success feedback created with Material UI
+- Loader created with Material UI
 
 ## Screenshots
 

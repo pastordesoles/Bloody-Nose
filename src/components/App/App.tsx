@@ -19,10 +19,18 @@ function App() {
       </Routes>
       <Suspense />
       {uiOptions.showModal && !uiOptions.isError && (
-        <Toast severity="success" message={uiOptions.modalText} />
+        <Toast
+          severity="success"
+          message={uiOptions.modalText}
+          isOpen={uiOptions.showModal}
+        />
       )}
       {uiOptions.showModal && uiOptions.isError && (
-        <Toast severity="error" message={uiOptions.modalText} />
+        <Toast
+          severity="error"
+          message={uiOptions.modalText}
+          isOpen={uiOptions.showModal}
+        />
       )}
     </>
   );

@@ -10,10 +10,7 @@ import {
 import sessionsRoutes from "./sessionsRoutes";
 import getAllSessionsResponseBody from "./types";
 
-import {
-  Session,
-  SessionsState,
-} from "../../redux/features/sessionsSlice/types";
+import { Session } from "../../redux/features/sessionsSlice/types";
 
 const apiUrl = process.env.REACT_APP_API_URL;
 const { sessionsRoute, listRoute } = sessionsRoutes;

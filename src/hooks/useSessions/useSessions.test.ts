@@ -2,6 +2,7 @@ import { renderHook } from "@testing-library/react";
 import mockSessionsState from "../../mocks/states/mockSessionsState";
 import mockInitialStore from "../../mocks/store/mockInitialStore";
 import { loadSessionsActionCreator } from "../../redux/features/sessionsSlice/sessionsSlice";
+import { Session } from "../../redux/features/sessionsSlice/types";
 import {
   hideLoadingActionCreator,
   openModalActionCreator,
@@ -61,6 +62,7 @@ describe("Given the useSessions hook", () => {
         1,
         showLoadingActionCreator()
       );
+
       expect(dispatchSpy).toHaveBeenNthCalledWith(
         2,
         loadSessionsActionCreator(sessions)

@@ -5,6 +5,7 @@ const initialState: UiState = {
   isError: false,
   modalText: "",
   showModal: false,
+  isLoading: false,
 };
 
 const uiSlice = createSlice({

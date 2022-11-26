@@ -1,7 +1,9 @@
 import { UiState } from "./types";
 import {
   closeModalActionCreator,
+  hideLoadingActionCreator,
   openModalActionCreator,
+  showLoadingActionCreator,
   uiReducer,
 } from "./uiSlice";
 
@@ -55,6 +57,60 @@ describe("Given openModalReducer", () => {
         initialUiState,
         openModalActionCreator(actionPayload)
       );
+
+      expect(newUiState).toStrictEqual(expectedUiState);
+    });
+  });
+});
+
+describe("Given showLoading reducer", () => {
+  const mockUiState: UiState = {
+    isError: false,
+    modalText: "",
+    showModal: false,
+    isLoading: false,
+  };
+
+  describe("When it recieves an initial state and isLoading true", () => {
+    test("Then it should return a new state with the property isLoading to true", () => {
+      const initialUiState: UiState = {
+        ...mockUiState,
+      };
+      const expectedUiState: UiState = {
+        showModal: false,
+        modalText: "",
+        isError: false,
+        isLoading: true,
+      };
+
+      const newUiState = uiReducer(initialUiState, showLoadingActionCreator());
+
+      expect(newUiState).toStrictEqual(expectedUiState);
+    });
+  });
+});
+
+describe("Given hideLoading reducer", () => {
+  const mockUiState: UiState = {
+    isError: false,
+    modalText: "",
+    showModal: false,
+    isLoading: true,
+  };
+
+  describe("When it recieves an initial state and isLoading true", () => {
+    test("Then it should return a new state with the property isLoading to false", () => {
+      const initialUiState: UiState = {
+        ...mockUiState,
+      };
+      const expectedUiState: UiState = {
+        showModal: false,
+        modalText: "",
+        isError: false,
+        isLoading: false,
+      };
+
+      const newUiState = uiReducer(initialUiState, hideLoadingActionCreator());
 
       expect(newUiState).toStrictEqual(expectedUiState);
     });

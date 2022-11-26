@@ -2,7 +2,11 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { useCallback, useMemo } from "react";
 import axios from "axios";
 import { loadSessionsActionCreator } from "../../redux/features/sessionsSlice/sessionsSlice";
-import { openModalActionCreator } from "../../redux/features/uiSlice/uiSlice";
+import {
+  hideLoadingActionCreator,
+  openModalActionCreator,
+  showLoadingActionCreator,
+} from "../../redux/features/uiSlice/uiSlice";
 import { SessionsState } from "../../redux/features/sessionsSlice/types";
 import sessionsRoutes from "./sessionsRoutes";
 
@@ -24,6 +28,7 @@ const useSessions = () => {
 
   const loadAllsessions = useCallback(async () => {
     try {
+      dispatch(showLoadingActionCreator());
       const response = await axios.get<SessionsState>(
         `${apiUrl}${sessionsRoute}${listRoute}`,
         authHeaders
@@ -32,7 +37,9 @@ const useSessions = () => {
       const { sessions } = response.data;
 
       dispatch(loadSessionsActionCreator(sessions));
+      dispatch(hideLoadingActionCreator());
     } catch (error: unknown) {
+      dispatch(hideLoadingActionCreator());
       dispatch(
         openModalActionCreator({
           isError: true,

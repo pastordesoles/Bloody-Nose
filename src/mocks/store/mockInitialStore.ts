@@ -3,6 +3,8 @@ import { sessionsReducer } from "../../redux/features/sessionsSlice/sessionsSlic
 import { uiReducer } from "../../redux/features/uiSlice/uiSlice";
 import { userReducer } from "../../redux/features/userSlice/userSlice";
 import { store } from "../../redux/store";
+import mockSessionsState from "../states/mockSessionsState";
+import mockUiState from "../states/mockUiState";
 import { mockUserStateNotLogged } from "../states/mockUserStates";
 
 const mockInitialStore: typeof store = configureStore({
@@ -13,6 +15,8 @@ const mockInitialStore: typeof store = configureStore({
   },
   preloadedState: {
     user: mockUserStateNotLogged,
+    ui: mockUiState,
+    sessions: mockSessionsState,
   },
 });
 

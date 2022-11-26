@@ -5,6 +5,7 @@ import LoginPage from "../../pages/LoginPage/LoginPage";
 import RegisterPage from "../../pages/RegisterPage/RegisterPage";
 import Toast from "../Toast/Toast";
 import Loader from "../Loader/Loader";
+import SessionsPage from "../../pages/SessionsPage/SessionsPage";
 
 function App() {
   const uiOptions = useAppSelector(({ ui }) => ui);
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/sessions" element={<SessionsPage />} />
       </Routes>
       <Suspense />
       {uiOptions.showModal && !uiOptions.isError && (

@@ -46,7 +46,10 @@ const handlers = [
   }),
 
   rest.get(`${apiUrl}${sessionsRoute}${listRoute}`, (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json(mockSessionsState));
+    return res(
+      ctx.status(200),
+      ctx.json({ sessions: { sessions: mockSessionsState.sessions } })
+    );
   }),
 ];
 

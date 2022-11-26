@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { useAppDispatch } from "../../redux/hooks";
 import { useCallback, useMemo } from "react";
 import axios from "axios";
 import { loadSessionsActionCreator } from "../../redux/features/sessionsSlice/sessionsSlice";
@@ -7,14 +7,16 @@ import {
   openModalActionCreator,
   showLoadingActionCreator,
 } from "../../redux/features/uiSlice/uiSlice";
-import { SessionsState } from "../../redux/features/sessionsSlice/types";
 import sessionsRoutes from "./sessionsRoutes";
+import GetAllSessionsResponseBody from "./types";
+
+import { Session } from "../../redux/features/sessionsSlice/types";
 
 const apiUrl = process.env.REACT_APP_API_URL;
 const { sessionsRoute, listRoute } = sessionsRoutes;
 
 const useSessions = () => {
-  const { token } = useAppSelector((state) => state.user);
+  const token = localStorage.getItem("token");
   const dispatch = useAppDispatch();
 
   const authHeaders = useMemo(
@@ -29,14 +31,15 @@ const useSessions = () => {
   const loadAllsessions = useCallback(async () => {
     try {
       dispatch(showLoadingActionCreator());
-      const response = await axios.get<SessionsState>(
+      const response = await axios.get<GetAllSessionsResponseBody>(
         `${apiUrl}${sessionsRoute}${listRoute}`,
         authHeaders
       );
 
-      const { sessions } = response.data;
+      const sessions = response.data.sessions.sessions;
+      const sessionsList: Session[] = sessions;
 
-      dispatch(loadSessionsActionCreator(sessions));
+      dispatch(loadSessionsActionCreator(sessionsList));
       dispatch(hideLoadingActionCreator());
     } catch (error: unknown) {
       dispatch(hideLoadingActionCreator());

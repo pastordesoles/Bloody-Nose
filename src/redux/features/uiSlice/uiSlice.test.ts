@@ -12,6 +12,7 @@ describe("Given closeModalReducer", () => {
         isError: false,
         modalText: "",
         showModal: true,
+        isLoading: false,
       };
 
       const expectedUiState: UiState = {
@@ -31,6 +32,7 @@ describe("Given openModalReducer", () => {
     isError: false,
     modalText: "",
     showModal: false,
+    isLoading: false,
   };
 
   describe("When it recieves an initial state and a payload isError true and the text 'Error'", () => {
@@ -46,6 +48,7 @@ describe("Given openModalReducer", () => {
         showModal: true,
         modalText: actionPayload.modalText,
         isError: actionPayload.isError,
+        isLoading: false,
       };
 
       const newUiState = uiReducer(

@@ -1,6 +1,6 @@
 import { Session } from "../../redux/features/sessionsSlice/types";
 
-interface getAllSessionsResponseBody {
+interface GetAllSessionsResponseBody {
   sessions: {
     isPreviousPage: boolean;
     isNextPage: boolean;
@@ -9,4 +9,4 @@ interface getAllSessionsResponseBody {
   };
 }
 
-export default getAllSessionsResponseBody;
+export default GetAllSessionsResponseBody;

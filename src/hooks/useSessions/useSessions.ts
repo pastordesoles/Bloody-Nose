@@ -8,7 +8,7 @@ import {
   showLoadingActionCreator,
 } from "../../redux/features/uiSlice/uiSlice";
 import sessionsRoutes from "./sessionsRoutes";
-import getAllSessionsResponseBody from "./types";
+import GetAllSessionsResponseBody from "./types";
 
 import { Session } from "../../redux/features/sessionsSlice/types";
 
@@ -31,7 +31,7 @@ const useSessions = () => {
   const loadAllsessions = useCallback(async () => {
     try {
       dispatch(showLoadingActionCreator());
-      const response = await axios.get<getAllSessionsResponseBody>(
+      const response = await axios.get<GetAllSessionsResponseBody>(
         `${apiUrl}${sessionsRoute}${listRoute}`,
         authHeaders
       );

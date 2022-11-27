@@ -4,6 +4,7 @@ import axios from "axios";
 import { loadSessionsActionCreator } from "../../redux/features/sessionsSlice/sessionsSlice";
 import {
   hideLoadingActionCreator,
+  loadPagesActionCreator,
   openModalActionCreator,
   showLoadingActionCreator,
 } from "../../redux/features/uiSlice/uiSlice";
@@ -28,29 +29,38 @@ const useSessions = () => {
     [token]
   );
 
-  const loadAllsessions = useCallback(async () => {
-    try {
-      dispatch(showLoadingActionCreator());
-      const response = await axios.get<GetAllSessionsResponseBody>(
-        `${apiUrl}${sessionsRoute}${listRoute}`,
-        authHeaders
-      );
+  const loadAllsessions = useCallback(
+    async (page = 0, limit = 5) => {
+      try {
+        dispatch(showLoadingActionCreator());
+        const response = await axios.get<GetAllSessionsResponseBody>(
+          `${apiUrl}${sessionsRoute}${listRoute}`,
+          {
+            params: { page, limit },
+            ...authHeaders,
+          }
+        );
 
-      const sessions = response.data.sessions.sessions;
-      const sessionsList: Session[] = sessions;
+        const { totalPages } = response.data.sessions;
+        const currentPage = page;
+        const sessions = response.data.sessions.sessions;
+        const sessionsList: Session[] = sessions;
 
-      dispatch(loadSessionsActionCreator(sessionsList));
-      dispatch(hideLoadingActionCreator());
-    } catch (error: unknown) {
-      dispatch(hideLoadingActionCreator());
-      dispatch(
-        openModalActionCreator({
-          isError: true,
-          modalText: "Error loading all sessions",
-        })
-      );
-    }
-  }, [dispatch, authHeaders]);
+        dispatch(loadSessionsActionCreator(sessionsList));
+        dispatch(loadPagesActionCreator({ totalPages, currentPage }));
+        dispatch(hideLoadingActionCreator());
+      } catch (error: unknown) {
+        dispatch(hideLoadingActionCreator());
+        dispatch(
+          openModalActionCreator({
+            isError: true,
+            modalText: "Error loading all sessions",
+          })
+        );
+      }
+    },
+    [dispatch, authHeaders]
+  );
 
   return { loadAllsessions };
 };

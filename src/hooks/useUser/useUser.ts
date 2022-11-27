@@ -1,5 +1,6 @@
 import axios from "axios";
 import decodeToken from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 import { openModalActionCreator } from "../../redux/features/uiSlice/uiSlice";
 import { User } from "../../redux/features/userSlice/types";
 import {
@@ -20,6 +21,7 @@ const { registerRoute, usersRoute, loginRoute } = userRoutes;
 
 const useUser = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const registerUser = async (userData: UserRegisterCredentials) => {
     try {
@@ -35,6 +37,7 @@ const useUser = () => {
           modalText: "User succesfully registered",
         })
       );
+      navigate("/login");
     } catch (error: unknown) {
       dispatch(
         openModalActionCreator({
@@ -65,6 +68,7 @@ const useUser = () => {
       };
 
       dispatch(loginUserActionCreator(loggedUser));
+
       dispatch(
         openModalActionCreator({
           isError: false,
@@ -72,6 +76,7 @@ const useUser = () => {
         })
       );
       localStorage.setItem("token", token);
+      navigate("/sessions");
       return true;
     } catch (error: unknown) {
       dispatch(
@@ -86,6 +91,7 @@ const useUser = () => {
   const logoutUser = () => {
     localStorage.setItem("token", "");
     dispatch(logoutUserActionCreator());
+    navigate("/");
   };
 
   return { registerUser, loginUser, logoutUser };

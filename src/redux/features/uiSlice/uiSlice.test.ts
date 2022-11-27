@@ -15,6 +15,10 @@ describe("Given closeModalReducer", () => {
         modalText: "",
         showModal: true,
         isLoading: false,
+        pagination: {
+          currentPage: 0,
+          totalPages: 0,
+        },
       };
 
       const expectedUiState: UiState = {
@@ -35,6 +39,10 @@ describe("Given openModalReducer", () => {
     modalText: "",
     showModal: false,
     isLoading: false,
+    pagination: {
+      currentPage: 0,
+      totalPages: 0,
+    },
   };
 
   describe("When it recieves an initial state and a payload isError true and the text 'Error'", () => {
@@ -51,6 +59,10 @@ describe("Given openModalReducer", () => {
         modalText: actionPayload.modalText,
         isError: actionPayload.isError,
         isLoading: false,
+        pagination: {
+          currentPage: 0,
+          totalPages: 0,
+        },
       };
 
       const newUiState = uiReducer(
@@ -69,6 +81,10 @@ describe("Given showLoading reducer", () => {
     modalText: "",
     showModal: false,
     isLoading: false,
+    pagination: {
+      currentPage: 0,
+      totalPages: 0,
+    },
   };
 
   describe("When it recieves an initial state and isLoading true", () => {
@@ -81,6 +97,10 @@ describe("Given showLoading reducer", () => {
         modalText: "",
         isError: false,
         isLoading: true,
+        pagination: {
+          currentPage: 0,
+          totalPages: 0,
+        },
       };
 
       const newUiState = uiReducer(initialUiState, showLoadingActionCreator());
@@ -96,6 +116,10 @@ describe("Given hideLoading reducer", () => {
     modalText: "",
     showModal: false,
     isLoading: true,
+    pagination: {
+      currentPage: 0,
+      totalPages: 0,
+    },
   };
 
   describe("When it recieves an initial state and isLoading true", () => {
@@ -108,6 +132,10 @@ describe("Given hideLoading reducer", () => {
         modalText: "",
         isError: false,
         isLoading: false,
+        pagination: {
+          currentPage: 0,
+          totalPages: 0,
+        },
       };
 
       const newUiState = uiReducer(initialUiState, hideLoadingActionCreator());

@@ -1,7 +1,9 @@
-import { UiState } from "./types";
+import { Pagination, UiState } from "./types";
 import {
+  advancePageActionCreator,
   closeModalActionCreator,
   hideLoadingActionCreator,
+  loadPagesActionCreator,
   openModalActionCreator,
   showLoadingActionCreator,
   uiReducer,
@@ -15,6 +17,10 @@ describe("Given closeModalReducer", () => {
         modalText: "",
         showModal: true,
         isLoading: false,
+        pagination: {
+          currentPage: 0,
+          totalPages: 0,
+        },
       };
 
       const expectedUiState: UiState = {
@@ -35,6 +41,10 @@ describe("Given openModalReducer", () => {
     modalText: "",
     showModal: false,
     isLoading: false,
+    pagination: {
+      currentPage: 0,
+      totalPages: 0,
+    },
   };
 
   describe("When it recieves an initial state and a payload isError true and the text 'Error'", () => {
@@ -51,6 +61,10 @@ describe("Given openModalReducer", () => {
         modalText: actionPayload.modalText,
         isError: actionPayload.isError,
         isLoading: false,
+        pagination: {
+          currentPage: 0,
+          totalPages: 0,
+        },
       };
 
       const newUiState = uiReducer(
@@ -69,6 +83,10 @@ describe("Given showLoading reducer", () => {
     modalText: "",
     showModal: false,
     isLoading: false,
+    pagination: {
+      currentPage: 0,
+      totalPages: 0,
+    },
   };
 
   describe("When it recieves an initial state and isLoading true", () => {
@@ -81,6 +99,10 @@ describe("Given showLoading reducer", () => {
         modalText: "",
         isError: false,
         isLoading: true,
+        pagination: {
+          currentPage: 0,
+          totalPages: 0,
+        },
       };
 
       const newUiState = uiReducer(initialUiState, showLoadingActionCreator());
@@ -96,6 +118,10 @@ describe("Given hideLoading reducer", () => {
     modalText: "",
     showModal: false,
     isLoading: true,
+    pagination: {
+      currentPage: 0,
+      totalPages: 0,
+    },
   };
 
   describe("When it recieves an initial state and isLoading true", () => {
@@ -108,11 +134,63 @@ describe("Given hideLoading reducer", () => {
         modalText: "",
         isError: false,
         isLoading: false,
+        pagination: {
+          currentPage: 0,
+          totalPages: 0,
+        },
       };
 
       const newUiState = uiReducer(initialUiState, hideLoadingActionCreator());
 
       expect(newUiState).toStrictEqual(expectedUiState);
+    });
+  });
+});
+
+describe("Given loadPages reducer", () => {
+  describe("When it receives an action to load pages", () => {
+    test("Then it should return the new state with pagination numbers", () => {
+      const expectedPagination: Pagination = {
+        currentPage: 1,
+        totalPages: 2,
+      };
+
+      const initialState: Partial<UiState> = {
+        pagination: {
+          currentPage: 0,
+          totalPages: 0,
+        },
+      };
+
+      const action = loadPagesActionCreator(expectedPagination);
+
+      const newState = uiReducer(initialState as UiState, action);
+
+      expect(newState).toHaveProperty("pagination", expectedPagination);
+    });
+  });
+});
+
+describe("Given an advance pages reducer", () => {
+  describe("When it receives an action to advance page", () => {
+    test("Then should return the new state with the current page updated to 2", () => {
+      const expectedPagination: Pagination = {
+        currentPage: 2,
+        totalPages: 2,
+      };
+
+      const initialState: Partial<UiState> = {
+        pagination: {
+          currentPage: 1,
+          totalPages: 2,
+        },
+      };
+
+      const action = advancePageActionCreator();
+
+      const newState = uiReducer(initialState as UiState, action);
+
+      expect(newState).toHaveProperty("pagination", expectedPagination);
     });
   });
 });

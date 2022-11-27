@@ -1,10 +1,11 @@
 import { renderHook } from "@testing-library/react";
 import mockSessionsState from "../../mocks/states/mockSessionsState";
+import mockUiState from "../../mocks/states/mockUiState";
 import mockInitialStore from "../../mocks/store/mockInitialStore";
 import { loadSessionsActionCreator } from "../../redux/features/sessionsSlice/sessionsSlice";
-import { Session } from "../../redux/features/sessionsSlice/types";
 import {
   hideLoadingActionCreator,
+  loadPagesActionCreator,
   openModalActionCreator,
   showLoadingActionCreator,
 } from "../../redux/features/uiSlice/uiSlice";
@@ -55,6 +56,7 @@ describe("Given the useSessions hook", () => {
       });
 
       const { sessions } = mockSessionsState;
+      const { pagination } = mockUiState;
 
       await loadAllsessions();
 
@@ -67,8 +69,14 @@ describe("Given the useSessions hook", () => {
         2,
         loadSessionsActionCreator(sessions)
       );
+
       expect(dispatchSpy).toHaveBeenNthCalledWith(
         3,
+        loadPagesActionCreator(pagination)
+      );
+
+      expect(dispatchSpy).toHaveBeenNthCalledWith(
+        4,
         hideLoadingActionCreator()
       );
     });

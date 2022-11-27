@@ -1,11 +1,9 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { renderWithProviders } from "../../test-utils/renderWithProviders";
-import mockInitialStore from "../../mocks/store/mockInitialStore";
 import { store } from "../../redux/store";
 import LoadMoreButton from "./LoadMore";
 import { advancePageActionCreator } from "../../redux/features/uiSlice/uiSlice";
-import { Provider } from "react-redux";
 
 const dispatchSpy = jest.spyOn(store, "dispatch");
 

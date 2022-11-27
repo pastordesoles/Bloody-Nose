@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import Header from "../../components/Header/Header";
 import SessionList from "../../components/SessionList/SessionList";
 import useSessions from "../../hooks/useSessions/useSessions";
 import SessionsPageStyled from "./SessionsPageStyled";
@@ -11,6 +12,7 @@ const SessionsPage = () => {
   }, [loadAllsessions]);
   return (
     <SessionsPageStyled>
+      <Header />
       <SessionList />
     </SessionsPageStyled>
   );

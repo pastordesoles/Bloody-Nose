@@ -9,13 +9,13 @@ import { mockUserStateNotLogged } from "../states/mockUserStates";
 
 const mockInitialStore: typeof store = configureStore({
   reducer: {
-    user: userReducer,
     ui: uiReducer,
+    user: userReducer,
     sessions: sessionsReducer,
   },
   preloadedState: {
-    user: mockUserStateNotLogged,
     ui: mockUiState,
+    user: mockUserStateNotLogged,
     sessions: mockSessionsState,
   },
 });

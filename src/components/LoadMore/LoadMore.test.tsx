@@ -62,10 +62,9 @@ describe("Given the LoadMoreButton component", () => {
       const expectedAction = advancePageActionCreator();
       const isLoading = false;
 
-      render(
-        <Provider store={store}>
-          <LoadMoreButton isLoading={isLoading} pagination={pagination} />
-        </Provider>
+      renderWithProviders(
+        <LoadMoreButton isLoading={isLoading} pagination={pagination} />,
+        { store }
       );
 
       const loadMoreButton = screen.getByRole("button");

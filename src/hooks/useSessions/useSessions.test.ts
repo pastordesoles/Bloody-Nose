@@ -3,7 +3,6 @@ import mockSessionsState from "../../mocks/states/mockSessionsState";
 import mockUiState from "../../mocks/states/mockUiState";
 import mockInitialStore from "../../mocks/store/mockInitialStore";
 import { loadSessionsActionCreator } from "../../redux/features/sessionsSlice/sessionsSlice";
-import { Session } from "../../redux/features/sessionsSlice/types";
 import {
   hideLoadingActionCreator,
   loadPagesActionCreator,

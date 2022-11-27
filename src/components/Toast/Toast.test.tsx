@@ -9,8 +9,6 @@ beforeEach(() => {
   jest.clearAllMocks();
 });
 
-const dispatchSpy = jest.spyOn(mockInitialStore, "dispatch");
-
 const mockDispatch = jest.fn();
 
 jest.mock("../../redux/hooks", () => ({

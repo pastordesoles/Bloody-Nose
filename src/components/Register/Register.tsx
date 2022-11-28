@@ -17,14 +17,14 @@ const RegisterForm = (): JSX.Element => {
     email: "",
   };
 
-  const [initialForm, setData] = useState(userData);
+  const [initialForm, setInitialForm] = useState(userData);
 
   const handleFormChange = (
     event:
       | React.ChangeEvent<HTMLInputElement>
       | React.ChangeEvent<HTMLTextAreaElement>
   ) => {
-    setData({
+    setInitialForm({
       ...initialForm,
       [event.target.id]: event.target.value,
     });

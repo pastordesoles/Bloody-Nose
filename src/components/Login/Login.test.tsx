@@ -37,14 +37,16 @@ describe("Given a Login form component", () => {
     test("Then the form should be submitted", async () => {
       renderWithProviders(<Login />);
 
-      const username = screen.queryByLabelText("username") as HTMLElement;
+      const username = screen.queryByRole("textbox", {
+        name: "Username",
+      }) as HTMLInputElement;
       const password = screen.queryByLabelText("password") as HTMLElement;
       await userEvent.type(username, "admin");
       await userEvent.type(password, "adminadmin");
       const button = screen.queryByRole("button")!;
       await userEvent.click(button);
 
-      expect(mockLogin).toHaveBeenCalled();
+      expect(mockLogin).toBeCalled();
     });
   });
 });

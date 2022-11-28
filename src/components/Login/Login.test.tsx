@@ -43,6 +43,7 @@ describe("Given a Login form component", () => {
       await userEvent.type(password, "adminadmin");
       const button = screen.queryByRole("button")!;
       await userEvent.click(button);
+      await userEvent.click(button);
 
       expect(mockLogin).toBeCalled();
     });

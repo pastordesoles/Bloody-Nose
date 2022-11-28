@@ -5,10 +5,11 @@ import {
   UserRegisterCredentials,
 } from "../hooks/useUser/types";
 import userRoutes from "../hooks/useUser/userRoutes";
+import mockLoadOneSession from "./Responses/mockLoadOneSession";
 import mockSessionsState from "./states/mockSessionsState";
 
 const { registerRoute, usersRoute, loginRoute } = userRoutes;
-const { sessionsRoute, listRoute } = sessionsRoutes;
+const { sessionsRoute, listRoute, session: sessionEnd } = sessionsRoutes;
 const apiUrl = process.env.REACT_APP_API_URL;
 
 const handlers = [
@@ -56,6 +57,14 @@ const handlers = [
         },
       })
     );
+  }),
+
+  rest.get(`${apiUrl}${sessionsRoute}${sessionEnd}:id`, (req, res, ctx) => {
+    return res.once(ctx.status(500), ctx.json({ error: "Core meltdown" }));
+  }),
+
+  rest.get(`${apiUrl}${sessionsRoute}${sessionEnd}:id`, (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json({ session: mockLoadOneSession }));
   }),
 ];
 

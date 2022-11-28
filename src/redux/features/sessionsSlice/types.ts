@@ -11,6 +11,7 @@ export interface Session {
   length: number;
   date: string;
   owner: string;
+  id?: string;
 }
 
 export interface SessionsState {

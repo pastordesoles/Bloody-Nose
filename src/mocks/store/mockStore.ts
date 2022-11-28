@@ -11,6 +11,7 @@ interface MockStoreProps {
   userPreloadState?: UserState;
   sessionsPreloadState?: SessionsState;
 }
+
 const mockStore = ({
   sessionsPreloadState,
   uiPreloadState,

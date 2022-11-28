@@ -1,7 +1,10 @@
 import { useAppDispatch } from "../../redux/hooks";
 import { useCallback, useMemo } from "react";
 import axios from "axios";
-import { loadSessionsActionCreator } from "../../redux/features/sessionsSlice/sessionsSlice";
+import {
+  loadOneSessionActionCreator,
+  loadSessionsActionCreator,
+} from "../../redux/features/sessionsSlice/sessionsSlice";
 import {
   hideLoadingActionCreator,
   loadPagesActionCreator,
@@ -14,7 +17,7 @@ import GetAllSessionsResponseBody from "./types";
 import { Session } from "../../redux/features/sessionsSlice/types";
 
 const apiUrl = process.env.REACT_APP_API_URL;
-const { sessionsRoute, listRoute } = sessionsRoutes;
+const { sessionsRoute, listRoute, session: sessionEnd } = sessionsRoutes;
 
 const useSessions = () => {
   const token = localStorage.getItem("token");
@@ -62,7 +65,33 @@ const useSessions = () => {
     [dispatch, authHeaders]
   );
 
-  return { loadAllsessions };
+  const loadOneSession = useCallback(
+    async (id: string) => {
+      try {
+        dispatch(showLoadingActionCreator());
+        const response = await axios.get(
+          `${apiUrl}${sessionsRoute}${sessionEnd}${id}`,
+          authHeaders
+        );
+
+        const { session } = await response.data;
+
+        dispatch(loadOneSessionActionCreator({ ...session }));
+        dispatch(hideLoadingActionCreator());
+      } catch (error: unknown) {
+        dispatch(hideLoadingActionCreator());
+        dispatch(
+          openModalActionCreator({
+            isError: true,
+            modalText: "Error loading a sessions",
+          })
+        );
+      }
+    },
+    [authHeaders, dispatch]
+  );
+
+  return { loadAllsessions, loadOneSession };
 };
 
 export default useSessions;

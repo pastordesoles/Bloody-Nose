@@ -16,7 +16,7 @@ const mockStore = ({
   sessionsPreloadState,
   uiPreloadState,
   userPreloadState,
-}: MockStoreProps = {}) =>
+}: MockStoreProps) =>
   configureStore({
     reducer: {
       ui: uiReducer,

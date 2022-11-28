@@ -49,7 +49,7 @@ describe("Given a Register form component", () => {
       const button = screen.queryByRole("button")!;
       await userEvent.click(button);
 
-      expect(mockLogin).toHaveBeenCalled();
+      expect(mockLogin).toBeCalled();
     });
   });
 });

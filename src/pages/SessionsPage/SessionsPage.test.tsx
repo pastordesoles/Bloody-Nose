@@ -1,4 +1,5 @@
 import { screen } from "@testing-library/react";
+import LoadMore from "../../components/LoadMore/LoadMore";
 import mockSessionsState from "../../mocks/states/mockSessionsState";
 import mockUiState from "../../mocks/states/mockUiState";
 import { mockUserStateLogged } from "../../mocks/states/mockUserStates";
@@ -23,6 +24,20 @@ describe("Given a Sessions page", () => {
       });
 
       expect(buttonJoin).toHaveLength(10);
+    });
+  });
+
+  describe("When", () => {
+    test("Then", async () => {
+      const pagination = { currentPage: 0, totalPages: 0 };
+      const isLoading = false;
+
+      renderWithProviders(
+        <LoadMore isLoading={isLoading} pagination={pagination} />
+      );
+      const loadMoreButton = screen.getByRole("button");
+
+      expect(loadMoreButton).toBeInTheDocument();
     });
   });
 });

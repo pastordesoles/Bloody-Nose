@@ -1,7 +1,11 @@
 import axios from "axios";
 import decodeToken from "jwt-decode";
 import { useNavigate } from "react-router-dom";
-import { openModalActionCreator } from "../../redux/features/uiSlice/uiSlice";
+import {
+  hideLoadingActionCreator,
+  openModalActionCreator,
+  showLoadingActionCreator,
+} from "../../redux/features/uiSlice/uiSlice";
 import { User } from "../../redux/features/userSlice/types";
 import {
   loginUserActionCreator,
@@ -25,12 +29,13 @@ const useUser = () => {
 
   const registerUser = async (userData: UserRegisterCredentials) => {
     try {
+      dispatch(showLoadingActionCreator());
       await axios.post(`${apiUrl}${usersRoute}${registerRoute}`, {
         username: userData.username,
         password: userData.password,
         email: userData.email,
       });
-
+      dispatch(hideLoadingActionCreator());
       dispatch(
         openModalActionCreator({
           isError: false,
@@ -50,6 +55,7 @@ const useUser = () => {
 
   const loginUser = async (user: UserCredentials) => {
     try {
+      dispatch(showLoadingActionCreator());
       const login = await axios.post<LoginResponse>(
         `${apiUrl}${usersRoute}${loginRoute}`,
         {
@@ -68,7 +74,7 @@ const useUser = () => {
       };
 
       dispatch(loginUserActionCreator(loggedUser));
-
+      dispatch(hideLoadingActionCreator());
       dispatch(
         openModalActionCreator({
           isError: false,

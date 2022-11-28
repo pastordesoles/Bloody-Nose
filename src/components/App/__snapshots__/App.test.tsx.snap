@@ -2,7 +2,7 @@
 
 exports[`Given an App component When it's rendered with path '/*' Then it should render 'Register Page' 1`] = `
 <main
-  className="sc-gswNZR hjNhIx"
+  className="sc-dkrFOg jOPgCP"
 >
   <div
     className="MuiBox-root css-19r8ggj"

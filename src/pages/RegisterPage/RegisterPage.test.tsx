@@ -1,4 +1,6 @@
 import { screen } from "@testing-library/react";
+import mockStore from "../../mocks/store/mockStore";
+import { UiState } from "../../redux/features/uiSlice/types";
 import { renderWithProviders } from "../../test-utils/renderWithProviders";
 import RegisterPage from "./RegisterPage";
 
@@ -24,6 +26,23 @@ describe("Given a register page", () => {
       expect(inputEmail).toBeInTheDocument();
       expect(inputUsername).toBeInTheDocument();
       expect(inputPassword).toBeInTheDocument();
+    });
+  });
+
+  describe("When is loading", () => {
+    test("Then it should show a Loader component", () => {
+      const mockUiPreloadedState: Partial<UiState> = {
+        isLoading: true,
+      };
+
+      const store = mockStore({
+        uiPreloadState: mockUiPreloadedState as UiState,
+      });
+      renderWithProviders(<RegisterPage />, { store });
+
+      const loader = screen.getByRole("alert");
+
+      expect(loader).toBeInTheDocument();
     });
   });
 });

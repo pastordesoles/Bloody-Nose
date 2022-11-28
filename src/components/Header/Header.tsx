@@ -30,7 +30,7 @@ const Header = (): JSX.Element => {
             <li>
               <NavLink to={"/"}>Set a Session</NavLink>
             </li>
-            <li>
+            <li className="button-container">
               <button onClick={logoutUser}>Log out</button>
             </li>
           </ul>

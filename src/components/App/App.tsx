@@ -9,6 +9,7 @@ import SessionsPage from "../../pages/SessionsPage/SessionsPage";
 import useToken from "../../hooks/useToken/useToken";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import ExitRoute from "../ExitRoute/ExitRoute";
+import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
 
 function App() {
   const uiOptions = useAppSelector(({ ui }) => ui);
@@ -51,6 +52,8 @@ function App() {
             </ExitRoute>
           }
         />
+
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Suspense />
       {uiOptions.showModal && !uiOptions.isError && (

@@ -53,6 +53,7 @@ const HeaderStyled = styled.div`
     padding: 20px 20px;
     text-decoration: none;
     font-size: 1.2rem;
+    text-align: center;
   }
   .header li a:hover,
   .header .menu-btn:hover {
@@ -125,6 +126,11 @@ const HeaderStyled = styled.div`
     top: 0;
   }
 
+  .button-container {
+    display: flex;
+    justify-content: center;
+  }
+
   button {
     background: none;
     color: white;
@@ -134,6 +140,7 @@ const HeaderStyled = styled.div`
     font-size: 1.2rem;
     cursor: pointer;
     outline: inherit;
+    text-align: center;
   }
 `;
 

@@ -57,4 +57,14 @@ describe("Given a Toast component", () => {
       expect(toast).toBeInTheDocument();
     });
   });
+
+  describe("When isOpen is false", () => {
+    test("Then closeModalActionCreator should not be called", () => {
+      renderWithProviders(
+        <Toast message={feedbackBody} isOpen={false} severity="error" />
+      );
+
+      expect(mockDispatch).not.toBeCalled();
+    });
+  });
 });

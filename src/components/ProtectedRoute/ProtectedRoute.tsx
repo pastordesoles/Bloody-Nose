@@ -1,11 +1,11 @@
 import { Navigate } from "react-router-dom";
 
-interface ExitRouteProps {
+interface ProtectedRouteProps {
   children: JSX.Element;
   isLogged: boolean;
 }
 
-const ProtectedRoute = ({ children, isLogged }: ExitRouteProps) => {
+const ProtectedRoute = ({ children, isLogged }: ProtectedRouteProps) => {
   if (isLogged) {
     return <Navigate to={"/sessions"} />;
   }

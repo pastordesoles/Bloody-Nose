@@ -9,7 +9,7 @@ const Header = (): JSX.Element => {
     <HeaderStyled className="menu-wrapper">
       <header className="header">
         <div>
-          <NavLink to={"/contacts"}>
+          <NavLink to={"/"}>
             <Typography component="h1" className="logo-icon">
               Bloody Nose
             </Typography>

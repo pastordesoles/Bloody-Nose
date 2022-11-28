@@ -10,6 +10,7 @@ import {
 } from "../../mocks/states/mockUserStates";
 import { renderWithProviders } from "../../test-utils/renderWithProviders";
 import { screen } from "@testing-library/react";
+import { UiState } from "../../redux/features/uiSlice/types";
 
 describe("Given an App component", () => {
   describe("When it's rendered with path '/*'", () => {
@@ -67,6 +68,42 @@ describe("Given an App component", () => {
       const heading = screen.queryByRole("heading", { name: title, level: 1 });
 
       expect(heading).toBeInTheDocument();
+    });
+  });
+
+  describe("When there is a success modal", () => {
+    test("Then it should show a success modal", () => {
+      const mockUiPreloadedState: Partial<UiState> = {
+        showModal: true,
+        isError: false,
+      };
+
+      const store = mockStore({
+        uiPreloadState: mockUiPreloadedState as UiState,
+      });
+      renderWithProviders(<App />, { store });
+
+      const toast = screen.queryByRole("alert");
+
+      expect(toast).toBeInTheDocument();
+    });
+  });
+
+  describe("When there is an error modal", () => {
+    test("Then it should show an error modal", () => {
+      const mockUiPreloadedState: Partial<UiState> = {
+        showModal: true,
+        isError: true,
+      };
+
+      const store = mockStore({
+        uiPreloadState: mockUiPreloadedState as UiState,
+      });
+      renderWithProviders(<App />, { store });
+
+      const toast = screen.queryByRole("alert");
+
+      expect(toast).toBeInTheDocument();
     });
   });
 });

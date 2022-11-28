@@ -54,4 +54,21 @@ describe("Given a useToken custom hook", () => {
       );
     });
   });
+
+  describe("When its method is onvoked and there is no token in the local storage", () => {
+    test("Then it should not call dispatch", () => {
+      const {
+        result: {
+          current: { getToken },
+        },
+      } = renderHook(() => useToken(), {
+        wrapper: ProviderWrapper,
+      });
+
+      mockLocalStorage.removeItem("token");
+      getToken();
+
+      expect(dispatchSpy).not.toHaveBeenCalled();
+    });
+  });
 });

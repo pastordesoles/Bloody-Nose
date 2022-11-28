@@ -12,7 +12,7 @@ const SessionsPage = () => {
   const { currentPage, totalPages } = useAppSelector(
     (state) => state.ui.pagination
   );
-  const isLastPage = currentPage === totalPages;
+  const isLastPage = currentPage === totalPages - 1;
 
   useEffect(() => {
     loadAllsessions(currentPage);

@@ -2,7 +2,7 @@ import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { renderWithProviders } from "../../test-utils/renderWithProviders";
 import { store } from "../../redux/store";
-import LoadMoreButton from "./LoadMore";
+import LoadMore from "./LoadMore";
 import { advancePageActionCreator } from "../../redux/features/uiSlice/uiSlice";
 
 const dispatchSpy = jest.spyOn(store, "dispatch");
@@ -15,7 +15,7 @@ describe("Given the LoadMoreButton component", () => {
       const isLoading = false;
 
       renderWithProviders(
-        <LoadMoreButton isLoading={isLoading} pagination={pagination} />
+        <LoadMore isLoading={isLoading} pagination={pagination} />
       );
       const loadMoreButton = screen.getByRole("button");
 
@@ -29,7 +29,7 @@ describe("Given the LoadMoreButton component", () => {
         const isLoading = false;
 
         renderWithProviders(
-          <LoadMoreButton isLoading={isLoading} pagination={pagination} />
+          <LoadMore isLoading={isLoading} pagination={pagination} />
         );
         const loadMoreButton = screen.getByRole("button");
 
@@ -44,7 +44,7 @@ describe("Given the LoadMoreButton component", () => {
       const isLoading = false;
 
       renderWithProviders(
-        <LoadMoreButton isLoading={isLoading} pagination={pagination} />
+        <LoadMore isLoading={isLoading} pagination={pagination} />
       );
       const loadMoreButton = screen.getByRole("button");
 
@@ -61,7 +61,7 @@ describe("Given the LoadMoreButton component", () => {
       const isLoading = false;
 
       renderWithProviders(
-        <LoadMoreButton isLoading={isLoading} pagination={pagination} />,
+        <LoadMore isLoading={isLoading} pagination={pagination} />,
         { store }
       );
 

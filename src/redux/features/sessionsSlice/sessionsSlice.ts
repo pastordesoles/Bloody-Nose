@@ -3,6 +3,7 @@ import { Session, SessionsState } from "./types";
 
 const initialSessionsState: SessionsState = {
   sessions: [],
+  session: {} as Session,
 };
 
 const sessionsSlice = createSlice({
@@ -13,10 +14,17 @@ const sessionsSlice = createSlice({
       ...currentSessionsState,
       sessions: [...currentSessionsState.sessions, ...action.payload],
     }),
+
+    loadOneSession: (currentSessionsState, action: PayloadAction<Session>) => ({
+      ...currentSessionsState,
+      session: { ...action.payload },
+    }),
   },
 });
 
-export const { loadSessions: loadSessionsActionCreator } =
-  sessionsSlice.actions;
+export const {
+  loadSessions: loadSessionsActionCreator,
+  loadOneSession: loadOneSessionActionCreator,
+} = sessionsSlice.actions;
 
 export const sessionsReducer = sessionsSlice.reducer;

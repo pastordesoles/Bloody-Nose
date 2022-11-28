@@ -7,6 +7,8 @@ import App from "./components/App/App";
 import reportWebVitals from "./reportWebVitals";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import { BrowserRouter } from "react-router-dom";
+import "@fontsource/coustard";
+import "@fontsource/montserrat";
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);

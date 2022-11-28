@@ -4,7 +4,7 @@ const LoginStyled = styled(Container)`
   .title {
     color: #d3d4d9;
     font-family: Coustard;
-    font-weight: bold;
+    font-weight: 400;
     font-size: 2rem;
   }
 

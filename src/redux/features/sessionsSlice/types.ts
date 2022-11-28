@@ -15,4 +15,5 @@ export interface Session {
 
 export interface SessionsState {
   sessions: Session[];
+  session: Session;
 }

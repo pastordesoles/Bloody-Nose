@@ -1,6 +1,13 @@
 import { Session, SessionsState } from "./types";
-import { loadSessionsActionCreator, sessionsReducer } from "./sessionsSlice";
-import { getRandomSessionsList } from "../../../factories/sessionsFactory";
+import {
+  loadOneSessionActionCreator,
+  loadSessionsActionCreator,
+  sessionsReducer,
+} from "./sessionsSlice";
+import {
+  getRandomSessionsList,
+  getRandomSession,
+} from "../../../factories/sessionsFactory";
 import mockSessionsState from "../../../mocks/states/mockSessionsState";
 
 describe("Given a sessionsReducer", () => {
@@ -21,15 +28,39 @@ describe("Given a sessionsReducer", () => {
     test("Then it should return a copy of the state with 10 sessions", () => {
       const currentState: SessionsState = {
         sessions: [],
+        session: {} as Session,
       };
       const actionPayload: Session[] = getRandomSessionsList(10);
       const expectedState: SessionsState = {
         sessions: actionPayload,
+        session: {} as Session,
       };
 
       const newState = sessionsReducer(
         currentState,
         loadSessionsActionCreator(actionPayload)
+      );
+
+      expect(newState).toStrictEqual(expectedState);
+    });
+  });
+
+  describe("When it receives a session", () => {
+    test("Then it should return a copy of the state with that session", () => {
+      const currentState: SessionsState = {
+        sessions: [],
+        session: {} as Session,
+      };
+
+      const sessionPayload: Session = getRandomSession();
+      const expectedState: SessionsState = {
+        sessions: [],
+        session: sessionPayload,
+      };
+
+      const newState = sessionsReducer(
+        currentState,
+        loadOneSessionActionCreator(sessionPayload)
       );
 
       expect(newState).toStrictEqual(expectedState);

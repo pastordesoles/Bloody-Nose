@@ -23,7 +23,7 @@ const SessionList = (): JSX.Element => {
             alignItems="center"
             justifyContent="center"
           >
-            <SessionCard session={session} />
+            <SessionCard session={session} isDetail={false} />
           </Grid>
         ))}
       </Grid>

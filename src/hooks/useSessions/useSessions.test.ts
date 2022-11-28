@@ -1,8 +1,12 @@
 import { renderHook } from "@testing-library/react";
+import mockLoadOneSession from "../../mocks/Responses/mockLoadOneSession";
 import mockSessionsState from "../../mocks/states/mockSessionsState";
 import mockUiState from "../../mocks/states/mockUiState";
 import mockInitialStore from "../../mocks/store/mockInitialStore";
-import { loadSessionsActionCreator } from "../../redux/features/sessionsSlice/sessionsSlice";
+import {
+  loadOneSessionActionCreator,
+  loadSessionsActionCreator,
+} from "../../redux/features/sessionsSlice/sessionsSlice";
 import {
   hideLoadingActionCreator,
   loadPagesActionCreator,
@@ -77,6 +81,70 @@ describe("Given the useSessions hook", () => {
 
       expect(dispatchSpy).toHaveBeenNthCalledWith(
         4,
+        hideLoadingActionCreator()
+      );
+    });
+  });
+
+  describe("When its method loadOneSessions is invoked and axios rejects it", () => {
+    test("Then dispatch should be called three times to show and hide loading and to show 'Error loading a session' message", async () => {
+      const {
+        result: {
+          current: { loadOneSession },
+        },
+      } = renderHook(() => useSessions(), {
+        wrapper: ProviderWrapper,
+      });
+
+      const sessionId = "1234";
+
+      await loadOneSession(sessionId);
+
+      expect(dispatchSpy).toHaveBeenNthCalledWith(
+        1,
+        showLoadingActionCreator()
+      );
+      expect(dispatchSpy).toHaveBeenNthCalledWith(
+        2,
+        hideLoadingActionCreator()
+      );
+      expect(dispatchSpy).toHaveBeenNthCalledWith(
+        3,
+        openModalActionCreator({
+          isError: true,
+          modalText: "Error loading a sessions",
+        })
+      );
+    });
+  });
+
+  describe("When its method loadOneSessions is invoked", () => {
+    test("Then dispatch should be called three times to show and hide loading and to load the received session", async () => {
+      const {
+        result: {
+          current: { loadOneSession },
+        },
+      } = renderHook(() => useSessions(), {
+        wrapper: ProviderWrapper,
+      });
+
+      const sessionId = "1234";
+      const session = mockLoadOneSession;
+
+      await loadOneSession(sessionId);
+
+      expect(dispatchSpy).toHaveBeenNthCalledWith(
+        1,
+        showLoadingActionCreator()
+      );
+
+      expect(dispatchSpy).toHaveBeenNthCalledWith(
+        2,
+        loadOneSessionActionCreator(session)
+      );
+
+      expect(dispatchSpy).toHaveBeenNthCalledWith(
+        3,
         hideLoadingActionCreator()
       );
     });

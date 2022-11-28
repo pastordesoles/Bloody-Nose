@@ -17,7 +17,7 @@ const sessionsSlice = createSlice({
 
     loadOneSession: (currentSessionsState, action: PayloadAction<Session>) => ({
       ...currentSessionsState,
-      session: { ...action.payload },
+      session: action.payload,
     }),
   },
 });

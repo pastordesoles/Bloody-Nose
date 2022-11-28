@@ -10,7 +10,7 @@ describe("Given a SessionCard component", () => {
     test("Then it should show a 'Join!' button", () => {
       const nameButton = "Join!";
 
-      renderWithProviders(<SessionCard session={session} />);
+      renderWithProviders(<SessionCard session={session} isDetail={true} />);
 
       const buttonJoin = screen.getByRole("button", {
         name: nameButton,

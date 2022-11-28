@@ -10,6 +10,7 @@ import useToken from "../../hooks/useToken/useToken";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import ExitRoute from "../ExitRoute/ExitRoute";
 import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
+import SessionDetailPage from "../../pages/SessionDetailPage/SessionDetailPage";
 
 function App() {
   const uiOptions = useAppSelector(({ ui }) => ui);
@@ -49,6 +50,15 @@ function App() {
           element={
             <ExitRoute isLogged={isLogged}>
               <SessionsPage />
+            </ExitRoute>
+          }
+        />
+
+        <Route
+          path="/session/:id"
+          element={
+            <ExitRoute isLogged={isLogged}>
+              <SessionDetailPage />
             </ExitRoute>
           }
         />

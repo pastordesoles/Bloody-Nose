@@ -1,16 +1,22 @@
 import { Routes, Route } from "react-router-dom";
-import { Suspense, useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { useAppSelector } from "../../redux/hooks";
 import LoginPage from "../../pages/LoginPage/LoginPage";
 import RegisterPage from "../../pages/RegisterPage/RegisterPage";
 import Toast from "../Toast/Toast";
 import Loader from "../Loader/Loader";
-import SessionsPage from "../../pages/SessionsPage/SessionsPage";
 import useToken from "../../hooks/useToken/useToken";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import ExitRoute from "../ExitRoute/ExitRoute";
-import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
 import SessionDetailPage from "../../pages/SessionDetailPage/SessionDetailPage";
+
+const SessionsPage = lazy(
+  () => import("../../pages/SessionsPage/SessionsPage")
+);
+
+const NotFoundPage = lazy(
+  () => import("../../pages/NotFoundPage/NotFoundPage")
+);
 
 function App() {
   const uiOptions = useAppSelector(({ ui }) => ui);

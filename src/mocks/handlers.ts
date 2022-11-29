@@ -47,6 +47,13 @@ const handlers = [
   }),
 
   rest.get(`${apiUrl}${sessionsRoute}${listRoute}`, (req, res, ctx) => {
+    return res.once(
+      ctx.status(404),
+      ctx.json({ error: "Error loading all sessions" })
+    );
+  }),
+
+  rest.get(`${apiUrl}${sessionsRoute}${listRoute}`, (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json({

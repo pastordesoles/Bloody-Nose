@@ -9,7 +9,7 @@ import SessionsPageStyled from "./SessionsPageStyled";
 import Loader from "../../components/Loader/Loader";
 
 const SessionsPage = () => {
-  const { loadAllsessions } = useSessions();
+  const { loadAllsessions, loadMoresessions } = useSessions();
   const { currentPage, totalPages } = useAppSelector(
     (state) => state.ui.pagination
   );
@@ -17,8 +17,13 @@ const SessionsPage = () => {
   const isLastPage = currentPage === totalPages - 1;
 
   useEffect(() => {
-    loadAllsessions(currentPage);
-  }, [currentPage, loadAllsessions]);
+    if (currentPage === 0) {
+      loadAllsessions(currentPage);
+    } else {
+      loadMoresessions(currentPage);
+    }
+  }, [currentPage, loadAllsessions, loadMoresessions]);
+
   return (
     <SessionsPageStyled>
       <Header />

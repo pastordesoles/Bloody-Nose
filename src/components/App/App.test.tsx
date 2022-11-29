@@ -9,7 +9,7 @@ import {
   mockUserStateNotLogged,
 } from "../../mocks/states/mockUserStates";
 import { renderWithProviders } from "../../test-utils/renderWithProviders";
-import { screen } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
 import { UiState } from "../../redux/features/uiSlice/types";
 
 describe("Given an App component", () => {
@@ -28,16 +28,38 @@ describe("Given an App component", () => {
   });
 
   describe("When the user is logged and is currently in the login page", () => {
-    test("Then it should be redirected to the sessions page", () => {
+    test("Then it should be redirected to the sessions page", async () => {
       const store = mockStore({ userPreloadState: mockUserStateLogged });
       const initialEntries = ["/sessions"];
       const title = "Bloody Nose";
 
       renderWithProviders(<App />, { store, initialEntries });
 
-      const heading = screen.queryByRole("heading", { name: title, level: 1 });
+      await waitFor(() => {
+        const heading = screen.queryByRole("heading", {
+          name: title,
+          level: 1,
+        });
+        expect(heading).toBeInTheDocument();
+      });
+    });
+  });
 
-      expect(heading).toBeInTheDocument();
+  describe("When the user is logged and goes to an inexistent page", () => {
+    test("Then it should be redirected to the not found page", async () => {
+      const store = mockStore({ userPreloadState: mockUserStateLogged });
+      const initialEntries = ["/ajwirjiew"];
+      const title = "Bloody Nose";
+
+      renderWithProviders(<App />, { store, initialEntries });
+
+      await waitFor(() => {
+        const heading = screen.queryByRole("heading", {
+          name: title,
+          level: 1,
+        });
+        expect(heading).toBeInTheDocument();
+      });
     });
   });
 

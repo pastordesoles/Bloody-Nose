@@ -12,6 +12,11 @@ const sessionsSlice = createSlice({
   reducers: {
     loadSessions: (currentSessionsState, action: PayloadAction<Session[]>) => ({
       ...currentSessionsState,
+      sessions: [...action.payload],
+    }),
+
+    addSessions: (currentSessionsState, action: PayloadAction<Session[]>) => ({
+      ...currentSessionsState,
       sessions: [...currentSessionsState.sessions, ...action.payload],
     }),
 
@@ -25,6 +30,7 @@ const sessionsSlice = createSlice({
 export const {
   loadSessions: loadSessionsActionCreator,
   loadOneSession: loadOneSessionActionCreator,
+  addSessions: addSessionsActionCreator,
 } = sessionsSlice.actions;
 
 export const sessionsReducer = sessionsSlice.reducer;

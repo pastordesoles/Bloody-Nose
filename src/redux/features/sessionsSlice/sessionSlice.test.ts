@@ -2,6 +2,7 @@ import { Session, SessionsState } from "./types";
 import {
   loadOneSessionActionCreator,
   loadSessionsActionCreator,
+  addSessionsActionCreator,
   sessionsReducer,
 } from "./sessionsSlice";
 import {
@@ -61,6 +62,27 @@ describe("Given a sessionsReducer", () => {
       const newState = sessionsReducer(
         currentState,
         loadOneSessionActionCreator(sessionPayload)
+      );
+
+      expect(newState).toStrictEqual(expectedState);
+    });
+  });
+
+  describe("When it receives a state with an empty sessions list and a load more sessions action with 10 sessions", () => {
+    test("Then it should return a copy of the state with 10 sessions", () => {
+      const currentState: SessionsState = {
+        sessions: [],
+        session: {} as Session,
+      };
+      const actionPayload: Session[] = getRandomSessionsList(10);
+      const expectedState: SessionsState = {
+        sessions: actionPayload,
+        session: {} as Session,
+      };
+
+      const newState = sessionsReducer(
+        currentState,
+        addSessionsActionCreator(actionPayload)
       );
 
       expect(newState).toStrictEqual(expectedState);

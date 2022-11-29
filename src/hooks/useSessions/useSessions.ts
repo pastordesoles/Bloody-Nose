@@ -2,6 +2,7 @@ import { useAppDispatch } from "../../redux/hooks";
 import { useCallback, useMemo } from "react";
 import axios from "axios";
 import {
+  addSessionsActionCreator,
   loadOneSessionActionCreator,
   loadSessionsActionCreator,
 } from "../../redux/features/sessionsSlice/sessionsSlice";
@@ -91,7 +92,40 @@ const useSessions = () => {
     [authHeaders, dispatch]
   );
 
-  return { loadAllsessions, loadOneSession };
+  const loadMoresessions = useCallback(
+    async (page = 0, limit = 5) => {
+      try {
+        dispatch(showLoadingActionCreator());
+        const response = await axios.get<GetAllSessionsResponseBody>(
+          `${apiUrl}${sessionsRoute}${listRoute}`,
+          {
+            params: { page, limit },
+            ...authHeaders,
+          }
+        );
+
+        const { totalPages } = response.data.sessions;
+        const currentPage = page;
+        const sessions = response.data.sessions.sessions;
+        const sessionsList: Session[] = sessions;
+
+        dispatch(addSessionsActionCreator(sessionsList));
+        dispatch(loadPagesActionCreator({ totalPages, currentPage }));
+        dispatch(hideLoadingActionCreator());
+      } catch (error: unknown) {
+        dispatch(hideLoadingActionCreator());
+        dispatch(
+          openModalActionCreator({
+            isError: true,
+            modalText: "Error loading all sessions",
+          })
+        );
+      }
+    },
+    [dispatch, authHeaders]
+  );
+
+  return { loadAllsessions, loadOneSession, loadMoresessions };
 };
 
 export default useSessions;

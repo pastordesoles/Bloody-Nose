@@ -8,6 +8,16 @@ import { UiState } from "../../redux/features/uiSlice/types";
 import { renderWithProviders } from "../../test-utils/renderWithProviders";
 import SessionsPage from "./SessionsPage";
 
+const mockAddMoreSessions = jest.fn();
+const mockLoaSessions = jest.fn();
+
+jest.mock("../../hooks/useSessions/useSessions", () => {
+  return () => ({
+    loadMoresessions: mockAddMoreSessions,
+    loadAllsessions: mockLoaSessions,
+  });
+});
+
 describe("Given a Sessions page", () => {
   describe("When it's rendered", () => {
     test("Then it should show 10 'Join!' button", () => {
@@ -58,6 +68,23 @@ describe("Given a Sessions page", () => {
       const loadMoreButton = screen.getByRole("button");
 
       expect(loadMoreButton).toBeInTheDocument();
+    });
+  });
+
+  describe("When the current page is not zero", () => {
+    test("Then load more sessions should be called", () => {
+      const mockUiState: Partial<UiState> = {
+        pagination: {
+          currentPage: 1,
+          totalPages: 2,
+        },
+      };
+
+      const store = mockStore({ uiPreloadState: mockUiState as UiState });
+
+      renderWithProviders(<SessionsPage />, { store });
+
+      expect(mockAddMoreSessions).toHaveBeenCalled();
     });
   });
 });

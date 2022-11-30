@@ -45,6 +45,24 @@ describe("Given an App component", () => {
     });
   });
 
+  describe("When the user is logged", () => {
+    test("Then it should be redirected to the sessions detail page", async () => {
+      const store = mockStore({ userPreloadState: mockUserStateLogged });
+      const initialEntries = ["/session/:id"];
+      const title = "Bloody Nose";
+
+      renderWithProviders(<App />, { store, initialEntries });
+
+      await waitFor(() => {
+        const heading = screen.queryByRole("heading", {
+          name: title,
+          level: 1,
+        });
+        expect(heading).toBeInTheDocument();
+      });
+    });
+  });
+
   describe("When the user is logged and goes to an inexistent page", () => {
     test("Then it should be redirected to the not found page", async () => {
       const store = mockStore({ userPreloadState: mockUserStateLogged });

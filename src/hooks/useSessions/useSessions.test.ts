@@ -1,4 +1,5 @@
 import { renderHook } from "@testing-library/react";
+import { getRandomSession } from "../../factories/sessionsFactory";
 import mockLoadOneSession from "../../mocks/Responses/mockLoadOneSession";
 import mockSessionsState from "../../mocks/states/mockSessionsState";
 import mockUiState from "../../mocks/states/mockUiState";
@@ -8,6 +9,7 @@ import {
   loadOneSessionActionCreator,
   loadSessionsActionCreator,
 } from "../../redux/features/sessionsSlice/sessionsSlice";
+import { Session } from "../../redux/features/sessionsSlice/types";
 import {
   hideLoadingActionCreator,
   loadPagesActionCreator,
@@ -213,6 +215,71 @@ describe("Given the useSessions hook", () => {
 
       expect(dispatchSpy).toHaveBeenNthCalledWith(
         3,
+        hideLoadingActionCreator()
+      );
+    });
+  });
+
+  describe("When its method addOneSession is invoked with one session and the server responds with 500 status", () => {
+    test("Then dispatch should be called three times to show and hide loading and to show the modal with one error", async () => {
+      const {
+        result: {
+          current: { addOneSession },
+        },
+      } = renderHook(() => useSessions(), {
+        wrapper: ProviderWrapper,
+      });
+
+      const newRandomGame = getRandomSession();
+
+      const newSession: Session = {
+        ...newRandomGame,
+      };
+
+      await addOneSession(newSession);
+
+      expect(dispatchSpy).toHaveBeenNthCalledWith(
+        1,
+        showLoadingActionCreator()
+      );
+      expect(dispatchSpy).toHaveBeenNthCalledWith(
+        2,
+        hideLoadingActionCreator()
+      );
+      expect(dispatchSpy).toHaveBeenNthCalledWith(
+        3,
+        openModalActionCreator({
+          isError: true,
+          modalText: "Error creating a session",
+        })
+      );
+    });
+  });
+
+  describe("When its method addOneSession is invoked with one session and the server responds with 201 status", () => {
+    test("Then dispatch should be called two times to show and hide loading", async () => {
+      const {
+        result: {
+          current: { addOneSession },
+        },
+      } = renderHook(() => useSessions(), {
+        wrapper: ProviderWrapper,
+      });
+
+      const newRandomSession = getRandomSession();
+
+      const newSession: Session = {
+        ...newRandomSession,
+      };
+
+      await addOneSession(newSession);
+
+      expect(dispatchSpy).toHaveBeenNthCalledWith(
+        1,
+        showLoadingActionCreator()
+      );
+      expect(dispatchSpy).toHaveBeenNthCalledWith(
+        2,
         hideLoadingActionCreator()
       );
     });

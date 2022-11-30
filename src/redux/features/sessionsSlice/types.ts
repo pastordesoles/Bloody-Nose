@@ -10,7 +10,7 @@ export interface Session {
   style: string;
   length: number;
   date: string;
-  owner: string;
+  owner?: string;
   id?: string;
 }
 

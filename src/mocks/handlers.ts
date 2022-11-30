@@ -1,4 +1,5 @@
 import { rest } from "msw";
+import { getRandomSession } from "../factories/sessionsFactory";
 import sessionsRoutes from "../hooks/useSessions/sessionsRoutes";
 import {
   UserCredentials,
@@ -9,8 +10,10 @@ import mockLoadOneSession from "./Responses/mockLoadOneSession";
 import mockSessionsState from "./states/mockSessionsState";
 
 const { registerRoute, usersRoute, loginRoute } = userRoutes;
-const { sessionsRoute, listRoute, session: sessionEnd } = sessionsRoutes;
+const { sessionsRoute, listRoute, session: sessionEnd, add } = sessionsRoutes;
 const apiUrl = process.env.REACT_APP_API_URL;
+
+const randomSession = getRandomSession();
 
 const handlers = [
   rest.post(`${apiUrl}${usersRoute}${registerRoute}`, async (req, res, ctx) => {
@@ -73,6 +76,17 @@ const handlers = [
   rest.get(`${apiUrl}${sessionsRoute}${sessionEnd}:id`, (req, res, ctx) => {
     return res(ctx.status(200), ctx.json({ session: mockLoadOneSession }));
   }),
+
+  rest.post(`${apiUrl}${sessionsRoute}${add}`, (req, res, ctx) =>
+    res.once(
+      ctx.status(500),
+      ctx.json({ error: "There was an error on the server" })
+    )
+  ),
+
+  rest.post(`${apiUrl}${sessionsRoute}${add}`, (req, res, ctx) =>
+    res(ctx.status(201), ctx.json({ randomSession }))
+  ),
 ];
 
 export default handlers;

@@ -14,11 +14,10 @@ import {
 } from "../../redux/features/uiSlice/uiSlice";
 import sessionsRoutes from "./sessionsRoutes";
 import GetAllSessionsResponseBody from "./types";
-
 import { Session } from "../../redux/features/sessionsSlice/types";
 
 const apiUrl = process.env.REACT_APP_API_URL;
-const { sessionsRoute, listRoute, session: sessionEnd } = sessionsRoutes;
+const { sessionsRoute, listRoute, session: sessionEnd, add } = sessionsRoutes;
 
 const useSessions = () => {
   const token = localStorage.getItem("token");
@@ -125,7 +124,32 @@ const useSessions = () => {
     [dispatch, authHeaders]
   );
 
-  return { loadAllsessions, loadOneSession, loadMoresessions };
+  const addOneSession = async (sessionFormData: Session) => {
+    try {
+      dispatch(showLoadingActionCreator());
+      await axios.post<Session>(
+        `${apiUrl}${sessionsRoute}${add}`,
+        sessionFormData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      dispatch(hideLoadingActionCreator());
+    } catch (error: unknown) {
+      dispatch(hideLoadingActionCreator());
+      dispatch(
+        openModalActionCreator({
+          isError: true,
+          modalText: "Error creating a session",
+        })
+      );
+    }
+  };
+
+  return { loadAllsessions, loadOneSession, loadMoresessions, addOneSession };
 };
 
 export default useSessions;

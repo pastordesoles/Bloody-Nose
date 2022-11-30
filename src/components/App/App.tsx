@@ -8,7 +8,6 @@ import Loader from "../Loader/Loader";
 import useToken from "../../hooks/useToken/useToken";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import ExitRoute from "../ExitRoute/ExitRoute";
-import SessionDetailPage from "../../pages/SessionDetailPage/SessionDetailPage";
 
 const SessionsPage = lazy(
   () => import("../../pages/SessionsPage/SessionsPage")
@@ -16,6 +15,10 @@ const SessionsPage = lazy(
 
 const NotFoundPage = lazy(
   () => import("../../pages/NotFoundPage/NotFoundPage")
+);
+
+const SessionDetailPage = lazy(
+  () => import("../../pages/SessionDetailPage/SessionDetailPage")
 );
 
 function App() {

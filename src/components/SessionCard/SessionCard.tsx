@@ -41,9 +41,10 @@ const SessionCard = ({
   },
   isDetail,
 }: SessionCardProps): JSX.Element => {
+  const cardPicture = picture as string;
   return (
     <Card sx={{ width: "90%", heigth: "100%" }}>
-      <CardMedia component="img" alt={title} height="140" image={picture} />
+      <CardMedia component="img" alt={title} height="140" image={cardPicture} />
       <CardContent>
         <SessionCardStyled
           gutterBottom

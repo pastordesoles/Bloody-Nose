@@ -31,7 +31,7 @@ const SessionForm = (): JSX.Element => {
   const [style, setStyle] = useState("");
 
   const handleChange = (event: SelectChangeEvent) => {
-    setStyle(event.target.value as string);
+    setStyle(event.target.value);
   };
 
   const userData: InitialUserData = {

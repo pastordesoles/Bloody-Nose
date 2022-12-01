@@ -121,7 +121,7 @@ const SessionForm = (): JSX.Element => {
         flexDirection: "column",
         justifyContent: "center",
         height: "100%",
-        width: "80%",
+        width: "100vw",
       }}
     >
       <SessionFormStyled

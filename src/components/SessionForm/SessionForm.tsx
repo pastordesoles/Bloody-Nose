@@ -3,11 +3,11 @@ import {
   TextField,
   Box,
   Typography,
-  FormLabel,
-  RadioGroup,
-  FormControlLabel,
-  Radio,
+  FormControl,
+  InputLabel,
+  MenuItem,
 } from "@mui/material";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { useState } from "react";
 import FormButton from "../FormButton/FormButton";
 import useSessions from "../../hooks/useSessions/useSessions";
@@ -28,6 +28,11 @@ export interface InitialUserData {
 
 const SessionForm = (): JSX.Element => {
   const { addOneSession } = useSessions();
+  const [style, setStyle] = useState("");
+
+  const handleChange = (event: SelectChangeEvent) => {
+    setStyle(event.target.value as string);
+  };
 
   const userData: InitialUserData = {
     content: "",
@@ -66,6 +71,7 @@ const SessionForm = (): JSX.Element => {
       [event.target.id]: event.target.value,
     });
   };
+
   const handleSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
     const formDataToSubmit = {
@@ -77,7 +83,7 @@ const SessionForm = (): JSX.Element => {
       location: initialForm.location,
       material: initialForm.material,
       participants: initialForm.participants,
-      style: initialForm.style,
+      style: style,
       picture: initialForm.picture,
     };
 
@@ -128,7 +134,6 @@ const SessionForm = (): JSX.Element => {
 
           <TextField
             required
-            focused
             fullWidth
             name="title"
             aria-label="title"
@@ -145,7 +150,6 @@ const SessionForm = (): JSX.Element => {
           />
           <TextField
             required
-            focused
             fullWidth
             name="location"
             aria-label="location"
@@ -162,7 +166,6 @@ const SessionForm = (): JSX.Element => {
           />
           <TextField
             required
-            focused
             fullWidth
             name="content"
             aria-label="content"
@@ -179,7 +182,6 @@ const SessionForm = (): JSX.Element => {
           />
           <TextField
             required
-            focused
             fullWidth
             name="length"
             aria-label="length"
@@ -198,7 +200,6 @@ const SessionForm = (): JSX.Element => {
 
           <TextField
             required
-            focused
             fullWidth
             name="date"
             aria-label="date"
@@ -208,14 +209,12 @@ const SessionForm = (): JSX.Element => {
             onChange={handleFormChange}
             className="input"
             sx={{ input: { color: "#000000" } }}
-            variant="outlined"
-            label="Date"
+            variant="standard"
             margin="normal"
             InputLabelProps={{ style: { color: "#000000" } }}
           />
           <TextField
             required
-            focused
             fullWidth
             name="level"
             aria-label="level"
@@ -232,7 +231,6 @@ const SessionForm = (): JSX.Element => {
           />
           <TextField
             required
-            focused
             fullWidth
             name="material"
             aria-label="material"
@@ -249,7 +247,6 @@ const SessionForm = (): JSX.Element => {
           />
           <TextField
             required
-            focused
             fullWidth
             name="participants"
             aria-label="participants"
@@ -266,35 +263,24 @@ const SessionForm = (): JSX.Element => {
             InputLabelProps={{ style: { color: "#000000" } }}
           />
 
-          <FormLabel id="demo-row-radio-buttons-group-label">Style</FormLabel>
-          <RadioGroup
-            row
-            aria-labelledby="demo-row-radio-buttons-group-label"
-            name="row-radio-buttons-group"
-          >
-            <FormControlLabel
-              value="karate"
-              name="style"
-              id="style"
-              aria-label="style"
-              control={<Radio />}
-              label="Karate"
-            />
-            <FormControlLabel
-              value="boxing"
-              control={<Radio />}
-              label="Boxing"
-            />
-            <FormControlLabel
-              value="kickboxing"
-              control={<Radio />}
-              label="Kickboxing"
-            />
-            <FormControlLabel value="mma" control={<Radio />} label="MMA" />
-          </RadioGroup>
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Style</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={style}
+              label="Style"
+              variant="outlined"
+              onChange={handleChange}
+            >
+              <MenuItem value={"karate"}>Karate</MenuItem>
+              <MenuItem value={"boxing"}>Boxing</MenuItem>
+              <MenuItem value={"mma"}>MMA</MenuItem>
+              <MenuItem value={"kickboxing"}>Kickboxing</MenuItem>
+            </Select>
+          </FormControl>
 
           <TextField
-            focused
             fullWidth
             name="picture"
             aria-label="picture"
@@ -304,7 +290,7 @@ const SessionForm = (): JSX.Element => {
             onChange={handleFormChange}
             className="input"
             sx={{ input: { color: "#000000" } }}
-            variant="outlined"
+            variant="standard"
             label="Picture"
             margin="normal"
             InputLabelProps={{ style: { color: "#000000" } }}

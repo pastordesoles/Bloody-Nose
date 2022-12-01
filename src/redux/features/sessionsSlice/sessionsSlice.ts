@@ -27,7 +27,7 @@ const sessionsSlice = createSlice({
 
     deleteSession: (currentSessionsState, action: PayloadAction<string>) => ({
       ...currentSessionsState,
-      games: currentSessionsState.sessions.filter(
+      sessions: currentSessionsState.sessions.filter(
         (session) => session.id !== action.payload
       ),
     }),

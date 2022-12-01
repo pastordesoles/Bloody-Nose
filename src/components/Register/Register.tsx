@@ -39,6 +39,17 @@ const RegisterForm = (): JSX.Element => {
     await registerUser(formDataToSubmit);
   };
 
+  const conditions = {
+    usernameField: {
+      condition: initialForm.username.length < 3 && initialForm.username !== "",
+      message: "Username must be at least 3 characters long",
+    },
+    passwordField: {
+      condition: initialForm.password.length < 5 && initialForm.password !== "",
+      message: "Password must be at least 5 characters long",
+    },
+  };
+
   return (
     <Box
       sx={{
@@ -83,7 +94,7 @@ const RegisterForm = (): JSX.Element => {
             Register
           </Typography>
 
-          {commonUserFormInputs(handleFormChange)}
+          {commonUserFormInputs(handleFormChange, conditions)}
           <TextField
             required
             fullWidth

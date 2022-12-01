@@ -35,7 +35,16 @@ const LoginForm = (): JSX.Element => {
     };
     await loginUser(formDataToSubmit);
   };
-
+  const conditions = {
+    usernameField: {
+      condition: initialForm.username.length < 3 && initialForm.username !== "",
+      message: "Username must be at least 3 characters long",
+    },
+    passwordField: {
+      condition: initialForm.password.length < 5 && initialForm.password !== "",
+      message: "Password must be at least 5 characters long",
+    },
+  };
   return (
     <Box
       sx={{
@@ -80,7 +89,7 @@ const LoginForm = (): JSX.Element => {
             SIGN IN
           </Typography>
 
-          {commonUserFormInputs(handleFormChange)}
+          {commonUserFormInputs(handleFormChange, conditions)}
           <FormButton message="SIGN IN" />
 
           <Typography component="span">

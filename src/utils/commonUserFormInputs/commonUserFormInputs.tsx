@@ -1,17 +1,32 @@
 import { TextField } from "@mui/material";
 
+interface Conditions {
+  usernameField: {
+    condition: boolean;
+    message: string;
+  };
+  passwordField: {
+    condition: boolean;
+    message: string;
+  };
+}
+
 const commonUserFormInputs = (
   handleFormChange: (
     event:
       | React.ChangeEvent<HTMLInputElement>
       | React.ChangeEvent<HTMLTextAreaElement>
-  ) => void
+  ) => void,
+  conditions: Conditions
 ) => {
   return (
     <>
       <TextField
         required
         fullWidth
+        error={conditions.usernameField.condition}
+        helperText={conditions.usernameField.message}
+        FormHelperTextProps={{ style: { color: "#d3d4d9" } }}
         name="username"
         aria-label="username"
         label="Username"
@@ -31,6 +46,9 @@ const commonUserFormInputs = (
       <TextField
         required
         fullWidth
+        error={conditions.passwordField.condition}
+        helperText={conditions.passwordField.message}
+        FormHelperTextProps={{ style: { color: "#d3d4d9" } }}
         name="password"
         aria-label="password"
         label="Password"

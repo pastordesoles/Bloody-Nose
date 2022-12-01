@@ -267,7 +267,8 @@ const SessionForm = (): JSX.Element => {
             <InputLabel id="demo-simple-select-label">Style</InputLabel>
             <Select
               labelId="demo-simple-select-label"
-              id="demo-simple-select"
+              id="style-select"
+              data-testid="my-wrapper"
               value={style}
               label="Style"
               variant="outlined"

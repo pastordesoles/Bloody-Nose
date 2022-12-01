@@ -1,4 +1,4 @@
-import { screen } from "@testing-library/react";
+import { screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { renderWithProviders } from "../../test-utils/renderWithProviders";
 import SessionForm from "./SessionForm";
@@ -65,7 +65,17 @@ describe("Given a Session form component", () => {
       await userEvent.type(material, "fffff");
       await userEvent.upload(picture!, image);
 
-      const button = screen.queryByRole("button")!;
+      const button = screen.queryByRole("button", { name: "CREATE" })!;
+
+      const selectLabel = /style/i;
+      const selectEl = await screen.findByLabelText(selectLabel);
+      expect(selectEl).toBeInTheDocument();
+      userEvent.click(selectEl);
+      const optionsPopupEl = await screen.findByRole("listbox", {
+        name: selectLabel,
+      });
+      userEvent.click(within(optionsPopupEl).getByText(/karate/i));
+
       await userEvent.click(button);
 
       expect(mockCreation).toBeCalled();

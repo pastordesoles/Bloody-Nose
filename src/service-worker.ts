@@ -17,7 +17,8 @@ registerRoute(
   new CacheFirst()
 );
 
-const apiURL = "https://xavier-sans-back-final-project-202209-bcn.onrender.com";
+const apiURL =
+  "https://xavier-sans-back-final-project-202209-bcn.onrender.com/";
 
 registerRoute(
   ({ url }) => url.origin === apiURL,

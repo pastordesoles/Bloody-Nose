@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const RegisterPageStyled = styled.main`
-  height: 100%;
+  height: 100vh;
   background-image: url("/images/mobileBlackGloves.webp");
   background-size: cover;
 

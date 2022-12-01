@@ -82,7 +82,7 @@ const RegisterForm = (): JSX.Element => {
             justifyContent: "center",
             alignItems: "center",
             padding: 2,
-            gap: 2,
+            gap: 1.25,
             width: "100%",
             maxWidth: "500px",
           }}

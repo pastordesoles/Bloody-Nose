@@ -28,8 +28,9 @@ const SessionsPage = () => {
     <SessionsPageStyled>
       <Header />
       <SessionList />
-      {!isLastPage && (
+      {!isLastPage && !isLoading && (
         <Grid item className="loadmore">
+          {}
           <LoadMore
             isLoading={false}
             pagination={{ currentPage, totalPages }}

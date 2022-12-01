@@ -1,5 +1,5 @@
 export interface Session {
-  picture?: string;
+  picture?: File | string;
   supabasePicture?: string;
   title: string;
   location: string;

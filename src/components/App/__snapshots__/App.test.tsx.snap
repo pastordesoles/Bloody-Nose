@@ -54,6 +54,7 @@ exports[`Given an App component When it's rendered with path '/*' Then it should
             onClick={[Function]}
           >
             <input
+              aria-describedby="username-helper-text"
               aria-invalid={false}
               autoComplete="off"
               autoFocus={false}
@@ -69,6 +70,17 @@ exports[`Given an App component When it's rendered with path '/*' Then it should
               type="text"
             />
           </div>
+          <p
+            className="MuiFormHelperText-root MuiFormHelperText-sizeMedium MuiFormHelperText-contained Mui-required css-1wc848c-MuiFormHelperText-root"
+            id="username-helper-text"
+            style={
+              Object {
+                "color": "#d3d4d9",
+              }
+            }
+          >
+            Username must be at least 3 characters long
+          </p>
         </div>
         <div
           aria-label="password"
@@ -99,6 +111,7 @@ exports[`Given an App component When it's rendered with path '/*' Then it should
             onClick={[Function]}
           >
             <input
+              aria-describedby="password-helper-text"
               aria-invalid={false}
               autoComplete="off"
               autoFocus={false}
@@ -114,6 +127,17 @@ exports[`Given an App component When it's rendered with path '/*' Then it should
               type="password"
             />
           </div>
+          <p
+            className="MuiFormHelperText-root MuiFormHelperText-sizeMedium MuiFormHelperText-contained Mui-required css-1wc848c-MuiFormHelperText-root"
+            id="password-helper-text"
+            style={
+              Object {
+                "color": "#d3d4d9",
+              }
+            }
+          >
+            Password must be at least 5 characters long
+          </p>
         </div>
         <div
           aria-label="email"

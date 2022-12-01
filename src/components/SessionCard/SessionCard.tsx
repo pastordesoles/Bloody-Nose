@@ -18,6 +18,7 @@ import Typography from "@mui/material/Typography";
 import { Session } from "../../redux/features/sessionsSlice/types";
 import { Link } from "react-router-dom";
 import SessionCardStyled from "./SessionCardStyled";
+import { useAppSelector } from "../../redux/hooks";
 
 interface SessionCardProps {
   session: Session;
@@ -38,9 +39,11 @@ const SessionCard = ({
     location,
     material,
     participants,
+    owner,
   },
   isDetail,
 }: SessionCardProps): JSX.Element => {
+  const userId = useAppSelector(({ user }) => user.id);
   const cardPicture = picture as string;
   return (
     <Card sx={{ width: "90%", heigth: "100%" }}>
@@ -161,9 +164,12 @@ const SessionCard = ({
             {" "}
             <SportsMartialArtsRoundedIcon /> Join!
           </Button>
-          <Button size="small">
-            <DeleteIcon />
-          </Button>
+
+          {owner === userId && (
+            <Button size="small">
+              <DeleteIcon />
+            </Button>
+          )}
         </Stack>
       </CardActions>
     </Card>

@@ -90,6 +90,29 @@ const SessionForm = (): JSX.Element => {
     await addOneSession(formDataToSubmit);
   };
 
+  const conditions = {
+    titleField: {
+      condition: initialForm.title.length < 5 && initialForm.title !== "",
+      message: "Title must be at least 5 characters long",
+    },
+    locationField: {
+      condition: initialForm.location.length < 5 && initialForm.location !== "",
+      message: "Location must be at least 5 characters long",
+    },
+    contentField: {
+      condition: initialForm.content.length < 5 && initialForm.content !== "",
+      message: "Content must be at least 5 characters long",
+    },
+    levelField: {
+      condition: initialForm.level.length < 3 && initialForm.level !== "",
+      message: "Content must be at least 3 characters long",
+    },
+    materialField: {
+      condition: initialForm.material.length < 3 && initialForm.material !== "",
+      message: "Content must be at least 3 characters long",
+    },
+  };
+
   return (
     <Box
       sx={{
@@ -135,6 +158,8 @@ const SessionForm = (): JSX.Element => {
           <TextField
             required
             fullWidth
+            error={conditions.titleField.condition}
+            helperText={conditions.titleField.message}
             name="title"
             aria-label="title"
             type="text"
@@ -151,6 +176,8 @@ const SessionForm = (): JSX.Element => {
           <TextField
             required
             fullWidth
+            error={conditions.locationField.condition}
+            helperText={conditions.locationField.message}
             name="location"
             aria-label="location"
             type="text"
@@ -167,6 +194,8 @@ const SessionForm = (): JSX.Element => {
           <TextField
             required
             fullWidth
+            error={conditions.contentField.condition}
+            helperText={conditions.contentField.message}
             name="content"
             aria-label="content"
             type="text"
@@ -216,6 +245,8 @@ const SessionForm = (): JSX.Element => {
           <TextField
             required
             fullWidth
+            error={conditions.levelField.condition}
+            helperText={conditions.levelField.message}
             name="level"
             aria-label="level"
             type="text"
@@ -232,6 +263,8 @@ const SessionForm = (): JSX.Element => {
           <TextField
             required
             fullWidth
+            error={conditions.materialField.condition}
+            helperText={conditions.materialField.message}
             name="material"
             aria-label="material"
             type="text"
@@ -263,7 +296,7 @@ const SessionForm = (): JSX.Element => {
             InputLabelProps={{ style: { color: "#000000" } }}
           />
 
-          <FormControl fullWidth>
+          <FormControl fullWidth required>
             <InputLabel id="demo-simple-select-label">Style</InputLabel>
             <Select
               labelId="demo-simple-select-label"

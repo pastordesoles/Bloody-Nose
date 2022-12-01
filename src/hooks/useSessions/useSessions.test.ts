@@ -270,6 +270,7 @@ describe("Given the useSessions hook", () => {
 
       const newSession: Session = {
         ...newRandomSession,
+        picture: {} as File,
       };
 
       await addOneSession(newSession);

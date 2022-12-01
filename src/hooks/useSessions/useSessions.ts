@@ -1,6 +1,7 @@
 import { useAppDispatch } from "../../redux/hooks";
 import { useCallback, useMemo } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import {
   addSessionsActionCreator,
   loadOneSessionActionCreator,
@@ -22,6 +23,7 @@ const { sessionsRoute, listRoute, session: sessionEnd, add } = sessionsRoutes;
 const useSessions = () => {
   const token = localStorage.getItem("token");
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const authHeaders = useMemo(
     () => ({
@@ -138,6 +140,7 @@ const useSessions = () => {
         }
       );
       dispatch(hideLoadingActionCreator());
+      navigate("/sessions");
     } catch (error: unknown) {
       dispatch(hideLoadingActionCreator());
       dispatch(

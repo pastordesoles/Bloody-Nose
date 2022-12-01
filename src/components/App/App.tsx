@@ -9,6 +9,7 @@ import useToken from "../../hooks/useToken/useToken";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import ExitRoute from "../ExitRoute/ExitRoute";
 import SessionDetailPage from "../../pages/SessionDetailPage/SessionDetailPage";
+import CreateSessionPage from "../../pages/CreateSessionPage/CreateSessionPage";
 
 const SessionsPage = lazy(
   () => import("../../pages/SessionsPage/SessionsPage")
@@ -70,7 +71,7 @@ function App() {
             )
           }
         />
-
+        <Route path="/create" element={<CreateSessionPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Suspense />

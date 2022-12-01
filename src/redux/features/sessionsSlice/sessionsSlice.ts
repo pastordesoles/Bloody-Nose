@@ -24,6 +24,13 @@ const sessionsSlice = createSlice({
       ...currentSessionsState,
       session: { ...action.payload },
     }),
+
+    deleteSession: (currentSessionsState, action: PayloadAction<string>) => ({
+      ...currentSessionsState,
+      sessions: currentSessionsState.sessions.filter(
+        (session) => session.id !== action.payload
+      ),
+    }),
   },
 });
 
@@ -31,6 +38,7 @@ export const {
   loadSessions: loadSessionsActionCreator,
   loadOneSession: loadOneSessionActionCreator,
   addSessions: addSessionsActionCreator,
+  deleteSession: deleteSessionActionCreator,
 } = sessionsSlice.actions;
 
 export const sessionsReducer = sessionsSlice.reducer;

@@ -199,6 +199,7 @@ const SessionForm = (): JSX.Element => {
             name="content"
             aria-label="content"
             type="text"
+            multiline={true}
             id="content"
             autoComplete="off"
             onChange={handleFormChange}

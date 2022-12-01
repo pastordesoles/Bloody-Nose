@@ -4,6 +4,7 @@ import {
   loadSessionsActionCreator,
   addSessionsActionCreator,
   sessionsReducer,
+  deleteSessionActionCreator,
 } from "./sessionsSlice";
 import {
   getRandomSessionsList,
@@ -62,6 +63,30 @@ describe("Given a sessionsReducer", () => {
       const newState = sessionsReducer(
         currentState,
         loadOneSessionActionCreator(sessionPayload)
+      );
+
+      expect(newState).toStrictEqual(expectedState);
+    });
+  });
+
+  describe("When it receives a session id to delete", () => {
+    test("Then it should return a copy of the state withoout that session", () => {
+      const sessions = getRandomSession();
+
+      const currentState: SessionsState = {
+        sessions: [sessions],
+        session: {} as Session,
+      };
+
+      const sessionPayload = sessions.id;
+      const expectedState: SessionsState = {
+        sessions: [],
+        session: {} as Session,
+      };
+
+      const newState = sessionsReducer(
+        currentState,
+        deleteSessionActionCreator(sessionPayload!)
       );
 
       expect(newState).toStrictEqual(expectedState);

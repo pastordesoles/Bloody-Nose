@@ -85,7 +85,7 @@ const handlers = [
   ),
 
   rest.post(`${apiUrl}${sessionsRoute}${add}`, (req, res, ctx) =>
-    res(ctx.status(201), ctx.json({ randomSession }))
+    res(ctx.status(201), ctx.json({ ...randomSession, picture: {} as File }))
   ),
 ];
 

@@ -13,6 +13,7 @@ import FormButton from "../FormButton/FormButton";
 import useSessions from "../../hooks/useSessions/useSessions";
 import SessionFormStyled from "./SessionFormStyled";
 import { useAppSelector } from "../../redux/hooks";
+import { useParams } from "react-router-dom";
 
 export interface InitialUserData {
   content: string;
@@ -32,9 +33,10 @@ interface SessionFormProps {
 }
 
 const SessionForm = ({ isUpdate }: SessionFormProps): JSX.Element => {
-  const { addOneSession, updateOneSession } = useSessions();
+  const { addOneSession, updateOneSession, loadOneSession } = useSessions();
   const [style, setStyle] = useState("");
   const { session } = useAppSelector((state) => state.sessions);
+  const { id: sessionId } = useParams<"id">();
 
   const handleChange = (event: SelectChangeEvent) => {
     setStyle(event.target.value);
@@ -54,6 +56,12 @@ const SessionForm = ({ isUpdate }: SessionFormProps): JSX.Element => {
   };
 
   const [initialForm, setInitialForm] = useState(userData);
+
+  useEffect(() => {
+    if (isUpdate) {
+      loadOneSession(sessionId!);
+    }
+  }, [isUpdate, loadOneSession, sessionId]);
 
   useEffect(() => {
     if (isUpdate) {

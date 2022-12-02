@@ -1,15 +1,18 @@
 import { screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { loadOneSessionActionCreator } from "../../redux/features/sessionsSlice/sessionsSlice";
 import { renderWithProviders } from "../../test-utils/renderWithProviders";
 import SessionForm from "./SessionForm";
 
 const mockCreation = jest.fn();
 const mockUpdate = jest.fn();
+const mockLoad = jest.fn();
 
 jest.mock("../../hooks/useSessions/useSessions", () => {
   return () => ({
     addOneSession: mockCreation,
     updateOneSession: mockUpdate,
+    loadOneSession: mockLoad,
   });
 });
 

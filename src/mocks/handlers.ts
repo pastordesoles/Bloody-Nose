@@ -112,14 +112,14 @@ const handlers = [
     }
   ),
 
-  rest.patch(`${apiUrl}${sessionsRoute}${edit}:id`, (req, res, ctx) => {
+  rest.patch(`${apiUrl}${sessionsRoute}/${edit}:id`, (req, res, ctx) => {
     return res.once(
       ctx.status(500),
       ctx.json({ error: "Error updating a session" })
     );
   }),
 
-  rest.patch(`${apiUrl}${sessionsRoute}${edit}:id`, (req, res, ctx) => {
+  rest.patch(`${apiUrl}${sessionsRoute}/${edit}:id`, (req, res, ctx) => {
     return res(ctx.status(200), ctx.json({}));
   }),
 ];

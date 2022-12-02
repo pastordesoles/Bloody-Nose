@@ -11,7 +11,7 @@ const CreateSessionPage = () => {
     <>
       <Header />
       <CreateSessionPageStyled>
-        <SessionForm />
+        <SessionForm isUpdate={false} />
       </CreateSessionPageStyled>
       {isLoading && <Loader />}
     </>

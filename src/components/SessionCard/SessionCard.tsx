@@ -19,6 +19,7 @@ import { Session } from "../../redux/features/sessionsSlice/types";
 import { Link } from "react-router-dom";
 import SessionCardStyled from "./SessionCardStyled";
 import { useAppSelector } from "../../redux/hooks";
+import useSessions from "../../hooks/useSessions/useSessions";
 
 interface SessionCardProps {
   session: Session;
@@ -44,7 +45,9 @@ const SessionCard = ({
   isDetail,
 }: SessionCardProps): JSX.Element => {
   const userId = useAppSelector(({ user }) => user.id);
+  const { deleteOneSession } = useSessions();
   const cardPicture = picture as string;
+
   return (
     <Card sx={{ width: "90%", heigth: "100%" }}>
       <CardMedia component="img" alt={title} height="140" image={cardPicture} />
@@ -166,7 +169,11 @@ const SessionCard = ({
           </Button>
 
           {owner === userId && (
-            <Button size="small">
+            <Button
+              size="small"
+              onClick={() => deleteOneSession(id!)}
+              aria-label="delete"
+            >
               <DeleteIcon />
             </Button>
           )}

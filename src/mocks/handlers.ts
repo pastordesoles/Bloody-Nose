@@ -16,6 +16,7 @@ const {
   session: sessionEnd,
   add,
   deleteSession,
+  edit,
 } = sessionsRoutes;
 const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -110,6 +111,17 @@ const handlers = [
       return res(ctx.status(200), ctx.json({}));
     }
   ),
+
+  rest.patch(`${apiUrl}${sessionsRoute}${edit}:id`, (req, res, ctx) => {
+    return res.once(
+      ctx.status(500),
+      ctx.json({ error: "Error updating a session" })
+    );
+  }),
+
+  rest.patch(`${apiUrl}${sessionsRoute}${edit}:id`, (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json({}));
+  }),
 ];
 
 export default handlers;

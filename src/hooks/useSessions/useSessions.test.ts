@@ -6,6 +6,7 @@ import mockUiState from "../../mocks/states/mockUiState";
 import mockInitialStore from "../../mocks/store/mockInitialStore";
 import {
   addSessionsActionCreator,
+  deleteSessionActionCreator,
   loadOneSessionActionCreator,
   loadSessionsActionCreator,
 } from "../../redux/features/sessionsSlice/sessionsSlice";
@@ -281,6 +282,69 @@ describe("Given the useSessions hook", () => {
       );
       expect(dispatchSpy).toHaveBeenNthCalledWith(
         2,
+        hideLoadingActionCreator()
+      );
+    });
+  });
+
+  describe("When its method deleteOneSessions is invoked and axios rejects it", () => {
+    test("Then dispatch should be called three times to show and hide loading and to show 'Error deleting a session' message", async () => {
+      const {
+        result: {
+          current: { deleteOneSession },
+        },
+      } = renderHook(() => useSessions(), {
+        wrapper: ProviderWrapper,
+      });
+
+      const sessionId = "1234";
+
+      await deleteOneSession(sessionId);
+
+      expect(dispatchSpy).toHaveBeenNthCalledWith(
+        1,
+        showLoadingActionCreator()
+      );
+      expect(dispatchSpy).toHaveBeenNthCalledWith(
+        2,
+        hideLoadingActionCreator()
+      );
+      expect(dispatchSpy).toHaveBeenNthCalledWith(
+        3,
+        openModalActionCreator({
+          isError: true,
+          modalText: "Error deleting a session",
+        })
+      );
+    });
+  });
+
+  describe("When its method deleteOneSessions is invoked", () => {
+    test("Then dispatch should be called three times to show and hide loading and to delete the session with the received id", async () => {
+      const {
+        result: {
+          current: { deleteOneSession },
+        },
+      } = renderHook(() => useSessions(), {
+        wrapper: ProviderWrapper,
+      });
+
+      const sessionId = "1234";
+
+      await deleteOneSession(sessionId);
+
+      expect(dispatchSpy).toHaveBeenNthCalledWith(
+        1,
+        showLoadingActionCreator()
+      );
+
+      expect(dispatchSpy).toHaveBeenNthCalledWith(
+        2,
+        deleteSessionActionCreator(sessionId)
+      );
+
+      expect(dispatchSpy).toHaveBeenNthCalledWith(
+        3,
         hideLoadingActionCreator()
       );
     });

@@ -35,19 +35,39 @@ describe("Given a SessionCard component", () => {
   describe("When it's rendered with a session that has the same id as the user", () => {
     test("Then it should show a delete icon button", async () => {
       const store = mockStore({ userPreloadState: mockUserStateLogged });
-      const nameButton = "delete";
+      const deleteButton = "delete";
 
       renderWithProviders(<SessionCard session={session} isDetail={true} />, {
         store,
       });
 
       const buttonDelete = screen.getByRole("button", {
-        name: nameButton,
+        name: deleteButton,
       });
 
       await userEvent.click(buttonDelete);
 
       expect(mockDelete).toBeCalled();
+    });
+  });
+
+  describe("When it's rendered with a session that has the same id as the user and could be edited", () => {
+    test("Then it should show an edit icon button", async () => {
+      const store = mockStore({ userPreloadState: mockUserStateLogged });
+
+      const editButton = "edit";
+
+      renderWithProviders(<SessionCard session={session} isDetail={true} />, {
+        store,
+      });
+
+      const buttonEdit = screen.getByRole("button", {
+        name: editButton,
+      });
+
+      await userEvent.click(buttonEdit);
+
+      expect(buttonEdit).toBeInTheDocument();
     });
   });
 });

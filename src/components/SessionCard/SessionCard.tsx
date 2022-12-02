@@ -13,10 +13,11 @@ import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
+import BorderColorRoundedIcon from "@mui/icons-material/BorderColorRounded";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Session } from "../../redux/features/sessionsSlice/types";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SessionCardStyled from "./SessionCardStyled";
 import { useAppSelector } from "../../redux/hooks";
 import useSessions from "../../hooks/useSessions/useSessions";
@@ -46,6 +47,7 @@ const SessionCard = ({
 }: SessionCardProps): JSX.Element => {
   const userId = useAppSelector(({ user }) => user.id);
   const { deleteOneSession } = useSessions();
+  const navigate = useNavigate();
   const cardPicture = picture as string;
 
   return (
@@ -156,6 +158,7 @@ const SessionCard = ({
             display={"flex"}
             alignItems={"flex-end"}
             sx={{ gap: 1 }}
+            textOverflow={"clip"}
           >
             <MessageRoundedIcon /> {content}
           </Typography>
@@ -175,6 +178,15 @@ const SessionCard = ({
               aria-label="delete"
             >
               <DeleteIcon />
+            </Button>
+          )}
+          {owner === userId && isDetail && (
+            <Button
+              size="small"
+              onClick={() => navigate(`/edit/${id}`)}
+              aria-label="edit"
+            >
+              <BorderColorRoundedIcon />
             </Button>
           )}
         </Stack>

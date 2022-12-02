@@ -25,6 +25,7 @@ const {
   session: sessionEnd,
   add,
   deleteSession,
+  edit,
 } = sessionsRoutes;
 
 const useSessions = () => {
@@ -170,6 +171,7 @@ const useSessions = () => {
 
         dispatch(deleteSessionActionCreator(id));
         dispatch(hideLoadingActionCreator());
+        navigate("/sessions");
       } catch (error: unknown) {
         dispatch(hideLoadingActionCreator());
         dispatch(
@@ -180,8 +182,40 @@ const useSessions = () => {
         );
       }
     },
-    [authHeaders, dispatch]
+    [authHeaders, dispatch, navigate]
   );
+
+  const updateOneSession = async (sessionFormData: Session, id: string) => {
+    try {
+      dispatch(showLoadingActionCreator());
+      await axios.patch<Session>(
+        `${apiUrl}${sessionsRoute}${edit}${id}`,
+        sessionFormData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      dispatch(hideLoadingActionCreator());
+      dispatch(
+        openModalActionCreator({
+          isError: false,
+          modalText: "Success updating a session",
+        })
+      );
+      navigate("/sessions");
+    } catch (error: unknown) {
+      dispatch(hideLoadingActionCreator());
+      dispatch(
+        openModalActionCreator({
+          isError: true,
+          modalText: "Error updating a session",
+        })
+      );
+    }
+  };
 
   return {
     loadAllsessions,
@@ -189,6 +223,7 @@ const useSessions = () => {
     loadMoresessions,
     addOneSession,
     deleteOneSession,
+    updateOneSession,
   };
 };
 

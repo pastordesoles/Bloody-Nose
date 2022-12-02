@@ -231,10 +231,10 @@ describe("Given the useSessions hook", () => {
         wrapper: ProviderWrapper,
       });
 
-      const newRandomGame = getRandomSession();
+      const newRandomSessions = getRandomSession();
 
       const newSession: Session = {
-        ...newRandomGame,
+        ...newRandomSessions,
       };
 
       await addOneSession(newSession);
@@ -346,6 +346,78 @@ describe("Given the useSessions hook", () => {
       expect(dispatchSpy).toHaveBeenNthCalledWith(
         3,
         hideLoadingActionCreator()
+      );
+    });
+  });
+
+  describe("When its method updateOneSessions is invoked and axios rejects it", () => {
+    test("Then dispatch should be called three times to show and hide loading and to show 'Error updating a session' message", async () => {
+      const {
+        result: {
+          current: { updateOneSession },
+        },
+      } = renderHook(() => useSessions(), {
+        wrapper: ProviderWrapper,
+      });
+
+      const sessionId = "1234";
+      const newRandomSessions = getRandomSession();
+      const newSession: Session = {
+        ...newRandomSessions,
+      };
+
+      await updateOneSession(newSession, sessionId);
+
+      expect(dispatchSpy).toHaveBeenNthCalledWith(
+        1,
+        showLoadingActionCreator()
+      );
+      expect(dispatchSpy).toHaveBeenNthCalledWith(
+        2,
+        hideLoadingActionCreator()
+      );
+      expect(dispatchSpy).toHaveBeenNthCalledWith(
+        3,
+        openModalActionCreator({
+          isError: true,
+          modalText: "Error updating a session",
+        })
+      );
+    });
+  });
+
+  describe("When its method updateOneSessions is invoked", () => {
+    test("Then dispatch should be called three times to show and hide loading and to delete the session with the received id", async () => {
+      const {
+        result: {
+          current: { updateOneSession },
+        },
+      } = renderHook(() => useSessions(), {
+        wrapper: ProviderWrapper,
+      });
+
+      const sessionId = "1234";
+      const newRandomSessions = getRandomSession();
+      const newSession: Session = {
+        ...newRandomSessions,
+      };
+
+      await updateOneSession(newSession, sessionId);
+
+      expect(dispatchSpy).toHaveBeenNthCalledWith(
+        1,
+        showLoadingActionCreator()
+      );
+      expect(dispatchSpy).toHaveBeenNthCalledWith(
+        2,
+        hideLoadingActionCreator()
+      );
+      expect(dispatchSpy).toHaveBeenNthCalledWith(
+        3,
+        openModalActionCreator({
+          isError: false,
+          modalText: "Success updating a session",
+        })
       );
     });
   });

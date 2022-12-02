@@ -4,6 +4,7 @@ const sessionsRoutes = {
   session: "/session/",
   add: "/add",
   deleteSession: "/delete",
+  edit: "edit/",
 };
 
 export default sessionsRoutes;

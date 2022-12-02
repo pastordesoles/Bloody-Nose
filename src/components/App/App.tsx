@@ -71,7 +71,16 @@ function App() {
             )
           }
         />
-        <Route path="/create" element={<CreateSessionPage />} />
+        <Route
+          path="/create"
+          element={
+            isLogged && (
+              <ExitRoute isLogged={isLogged}>
+                <CreateSessionPage />
+              </ExitRoute>
+            )
+          }
+        />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Suspense />

@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import {
   addSessionsActionCreator,
+  deleteSessionActionCreator,
   loadOneSessionActionCreator,
   loadSessionsActionCreator,
 } from "../../redux/features/sessionsSlice/sessionsSlice";
@@ -18,7 +19,13 @@ import GetAllSessionsResponseBody from "./types";
 import { Session } from "../../redux/features/sessionsSlice/types";
 
 const apiUrl = process.env.REACT_APP_API_URL;
-const { sessionsRoute, listRoute, session: sessionEnd, add } = sessionsRoutes;
+const {
+  sessionsRoute,
+  listRoute,
+  session: sessionEnd,
+  add,
+  deleteSession,
+} = sessionsRoutes;
 
 const useSessions = () => {
   const token = localStorage.getItem("token");
@@ -152,7 +159,37 @@ const useSessions = () => {
     }
   };
 
-  return { loadAllsessions, loadOneSession, loadMoresessions, addOneSession };
+  const deleteOneSession = useCallback(
+    async (id: string) => {
+      try {
+        dispatch(showLoadingActionCreator());
+        await axios.delete(
+          `${apiUrl}${sessionsRoute}${deleteSession}/${id}`,
+          authHeaders
+        );
+
+        dispatch(deleteSessionActionCreator(id));
+        dispatch(hideLoadingActionCreator());
+      } catch (error: unknown) {
+        dispatch(hideLoadingActionCreator());
+        dispatch(
+          openModalActionCreator({
+            isError: true,
+            modalText: "Error deleting a session",
+          })
+        );
+      }
+    },
+    [authHeaders, dispatch]
+  );
+
+  return {
+    loadAllsessions,
+    loadOneSession,
+    loadMoresessions,
+    addOneSession,
+    deleteOneSession,
+  };
 };
 
 export default useSessions;

@@ -10,7 +10,13 @@ import mockLoadOneSession from "./Responses/mockLoadOneSession";
 import mockSessionsState from "./states/mockSessionsState";
 
 const { registerRoute, usersRoute, loginRoute } = userRoutes;
-const { sessionsRoute, listRoute, session: sessionEnd, add } = sessionsRoutes;
+const {
+  sessionsRoute,
+  listRoute,
+  session: sessionEnd,
+  add,
+  deleteSession,
+} = sessionsRoutes;
 const apiUrl = process.env.REACT_APP_API_URL;
 
 const randomSession = getRandomSession();
@@ -86,6 +92,23 @@ const handlers = [
 
   rest.post(`${apiUrl}${sessionsRoute}${add}`, (req, res, ctx) =>
     res(ctx.status(201), ctx.json({ ...randomSession, picture: {} as File }))
+  ),
+
+  rest.delete(
+    `${apiUrl}${sessionsRoute}${deleteSession}/:id`,
+    (req, res, ctx) => {
+      return res.once(
+        ctx.status(500),
+        ctx.json({ error: "Error deleting a session" })
+      );
+    }
+  ),
+
+  rest.delete(
+    `${apiUrl}${sessionsRoute}${deleteSession}/:id`,
+    (req, res, ctx) => {
+      return res(ctx.status(200), ctx.json({}));
+    }
   ),
 ];
 

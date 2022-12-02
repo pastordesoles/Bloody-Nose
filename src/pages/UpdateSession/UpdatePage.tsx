@@ -1,21 +1,21 @@
 import Header from "../../components/Header/Header";
 import Loader from "../../components/Loader/Loader";
-
 import SessionForm from "../../components/SessionForm/SessionForm";
 import { useAppSelector } from "../../redux/hooks";
-import CreateSessionPageStyled from "./CreateSessionPageStyled";
+import UpdatePageStyled from "./UpdatePageStyled";
 
-const CreateSessionPage = () => {
+const UpdatePage = () => {
   const isLoading = useAppSelector((state) => state.ui.isLoading);
+
   return (
     <>
       <Header />
-      <CreateSessionPageStyled>
-        <SessionForm isUpdate={false} />
-      </CreateSessionPageStyled>
-      {isLoading && <Loader />}
+      <UpdatePageStyled>
+        <SessionForm isUpdate={true} />
+        {isLoading && <Loader />}
+      </UpdatePageStyled>
     </>
   );
 };
 
-export default CreateSessionPage;
+export default UpdatePage;

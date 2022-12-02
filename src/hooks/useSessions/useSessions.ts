@@ -189,7 +189,7 @@ const useSessions = () => {
     try {
       dispatch(showLoadingActionCreator());
       await axios.patch<Session>(
-        `${apiUrl}${sessionsRoute}${edit}${id}`,
+        `${apiUrl}${sessionsRoute}/${edit}${id}`,
         sessionFormData,
         {
           headers: {

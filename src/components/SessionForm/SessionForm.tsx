@@ -8,10 +8,12 @@ import {
   MenuItem,
 } from "@mui/material";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FormButton from "../FormButton/FormButton";
 import useSessions from "../../hooks/useSessions/useSessions";
 import SessionFormStyled from "./SessionFormStyled";
+import { useAppSelector } from "../../redux/hooks";
+import { useParams } from "react-router-dom";
 
 export interface InitialUserData {
   content: string;
@@ -26,9 +28,15 @@ export interface InitialUserData {
   picture: File;
 }
 
-const SessionForm = (): JSX.Element => {
-  const { addOneSession } = useSessions();
+interface SessionFormProps {
+  isUpdate: boolean;
+}
+
+const SessionForm = ({ isUpdate }: SessionFormProps): JSX.Element => {
+  const { addOneSession, updateOneSession, loadOneSession } = useSessions();
   const [style, setStyle] = useState("");
+  const { session } = useAppSelector((state) => state.sessions);
+  const { id: sessionId } = useParams<"id">();
 
   const handleChange = (event: SelectChangeEvent) => {
     setStyle(event.target.value);
@@ -48,6 +56,18 @@ const SessionForm = (): JSX.Element => {
   };
 
   const [initialForm, setInitialForm] = useState(userData);
+
+  useEffect(() => {
+    if (isUpdate) {
+      loadOneSession(sessionId!);
+    }
+  }, [isUpdate, loadOneSession, sessionId]);
+
+  useEffect(() => {
+    if (isUpdate) {
+      setInitialForm(session as InitialUserData);
+    }
+  }, [isUpdate, session]);
 
   const handleFormChange = (
     event:
@@ -87,28 +107,35 @@ const SessionForm = (): JSX.Element => {
       picture: initialForm.picture,
     };
 
+    if (isUpdate) {
+      await updateOneSession(formDataToSubmit, session.id!);
+      return;
+    }
+
     await addOneSession(formDataToSubmit);
   };
 
   const conditions = {
     titleField: {
-      condition: initialForm.title.length < 5 && initialForm.title !== "",
+      condition: initialForm.title?.length < 5 && initialForm.title !== "",
       message: "Title must be at least 5 characters long",
     },
     locationField: {
-      condition: initialForm.location.length < 5 && initialForm.location !== "",
+      condition:
+        initialForm.location?.length < 5 && initialForm.location !== "",
       message: "Location must be at least 5 characters long",
     },
     contentField: {
-      condition: initialForm.content.length < 5 && initialForm.content !== "",
+      condition: initialForm.content?.length < 5 && initialForm.content !== "",
       message: "Content must be at least 5 characters long",
     },
     levelField: {
-      condition: initialForm.level.length < 3 && initialForm.level !== "",
+      condition: initialForm.level?.length < 3 && initialForm.level !== "",
       message: "Content must be at least 3 characters long",
     },
     materialField: {
-      condition: initialForm.material.length < 3 && initialForm.material !== "",
+      condition:
+        initialForm.material?.length < 3 && initialForm.material !== "",
       message: "Content must be at least 3 characters long",
     },
   };
@@ -152,7 +179,7 @@ const SessionForm = (): JSX.Element => {
           }}
         >
           <Typography component="h1" className="title">
-            Create a Session{" "}
+            {isUpdate ? "Edit a Session" : "Create a Session"}
           </Typography>
 
           <TextField
@@ -172,6 +199,7 @@ const SessionForm = (): JSX.Element => {
             label="Title"
             margin="normal"
             InputLabelProps={{ style: { color: "#000000" } }}
+            value={initialForm.title || ""}
           />
           <TextField
             required
@@ -190,6 +218,7 @@ const SessionForm = (): JSX.Element => {
             label="Location"
             margin="normal"
             InputLabelProps={{ style: { color: "#000000" } }}
+            value={initialForm.location || ""}
           />
           <TextField
             required
@@ -209,6 +238,7 @@ const SessionForm = (): JSX.Element => {
             label="Content"
             margin="normal"
             InputLabelProps={{ style: { color: "#000000" } }}
+            value={initialForm.content || ""}
           />
           <TextField
             required
@@ -226,6 +256,7 @@ const SessionForm = (): JSX.Element => {
             label="Length"
             margin="normal"
             InputLabelProps={{ style: { color: "#000000" } }}
+            value={initialForm.length || 0}
           />
 
           <TextField
@@ -242,6 +273,7 @@ const SessionForm = (): JSX.Element => {
             variant="standard"
             margin="normal"
             InputLabelProps={{ style: { color: "#000000" } }}
+            value={initialForm.date || ""}
           />
           <TextField
             required
@@ -260,6 +292,7 @@ const SessionForm = (): JSX.Element => {
             label="Level"
             margin="normal"
             InputLabelProps={{ style: { color: "#000000" } }}
+            value={initialForm.level || ""}
           />
           <TextField
             required
@@ -278,6 +311,7 @@ const SessionForm = (): JSX.Element => {
             label="Material"
             margin="normal"
             InputLabelProps={{ style: { color: "#000000" } }}
+            value={initialForm.material || ""}
           />
           <TextField
             required
@@ -295,6 +329,7 @@ const SessionForm = (): JSX.Element => {
             label="Participants"
             margin="normal"
             InputLabelProps={{ style: { color: "#000000" } }}
+            value={initialForm.participants || 0}
           />
 
           <FormControl fullWidth required>
@@ -303,7 +338,7 @@ const SessionForm = (): JSX.Element => {
               labelId="demo-simple-select-label"
               id="style-select"
               data-testid="my-wrapper"
-              value={style}
+              value={initialForm.style || style}
               label="Style"
               variant="outlined"
               onChange={handleChange}
@@ -330,7 +365,7 @@ const SessionForm = (): JSX.Element => {
             margin="normal"
             InputLabelProps={{ style: { color: "#000000" } }}
           />
-          <FormButton message="CREATE" />
+          <FormButton message={isUpdate ? "UPDATE" : "CREATE"} />
         </Paper>
       </SessionFormStyled>
     </Box>

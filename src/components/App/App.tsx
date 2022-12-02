@@ -10,6 +10,7 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import ExitRoute from "../ExitRoute/ExitRoute";
 import SessionDetailPage from "../../pages/SessionDetailPage/SessionDetailPage";
 import CreateSessionPage from "../../pages/CreateSessionPage/CreateSessionPage";
+import UpdatePage from "../../pages/UpdateSession/UpdatePage";
 
 const SessionsPage = lazy(
   () => import("../../pages/SessionsPage/SessionsPage")
@@ -81,6 +82,9 @@ function App() {
             )
           }
         />
+
+        <Route path="/edit/:id" element={<UpdatePage />} />
+
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Suspense />

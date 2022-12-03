@@ -20,9 +20,7 @@ const sessionsSlice = createSlice({
       sessions: [...currentSessionsState.sessions, ...action.payload].filter(
         (session, index, self) =>
           self.findIndex((sessionIndex) => {
-            return (
-              sessionIndex.id === session.id && sessionIndex.id === session.id
-            );
+            return sessionIndex.id === session.id;
           }) === index
       ),
     }),

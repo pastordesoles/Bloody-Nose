@@ -67,6 +67,8 @@ describe("Given a Session form component", () => {
       await userEvent.type(content, "bbbb");
       await userEvent.type(level, "dddd");
       await userEvent.type(material, "fffff");
+
+      URL.createObjectURL = jest.fn().mockReturnValue(image.type);
       await userEvent.upload(picture!, image);
 
       const button = screen.queryByRole("button", { name: "SUBMIT" })!;
@@ -115,6 +117,9 @@ describe("Given a Session form component", () => {
       await userEvent.type(content, "bbbb");
       await userEvent.type(level, "dddd");
       await userEvent.type(material, "fffff");
+
+      URL.createObjectURL = jest.fn().mockReturnValue(image.type);
+
       await userEvent.upload(picture!, image);
 
       const button = screen.queryByRole("button", { name: "SUBMIT" })!;

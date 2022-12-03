@@ -365,7 +365,7 @@ const SessionForm = ({ isUpdate }: SessionFormProps): JSX.Element => {
             margin="normal"
             InputLabelProps={{ style: { color: "#000000" } }}
           />
-          <FormButton message={isUpdate ? "UPDATE" : "CREATE"} />
+          <FormButton message="SUBMIT" />
         </Paper>
       </SessionFormStyled>
     </Box>

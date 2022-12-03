@@ -48,11 +48,15 @@ const SessionCard = ({
   const userId = useAppSelector(({ user }) => user.id);
   const { deleteOneSession } = useSessions();
   const navigate = useNavigate();
-  const cardPicture = picture as string;
 
   return (
     <Card sx={{ width: "90%", heigth: "100%" }}>
-      <CardMedia component="img" alt={title} height="140" image={cardPicture} />
+      <CardMedia
+        component="img"
+        alt={title}
+        height="140"
+        src={picture as string}
+      />
       <CardContent>
         <SessionCardStyled
           gutterBottom

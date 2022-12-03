@@ -1,6 +1,5 @@
 import { screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { loadOneSessionActionCreator } from "../../redux/features/sessionsSlice/sessionsSlice";
 import { renderWithProviders } from "../../test-utils/renderWithProviders";
 import SessionForm from "./SessionForm";
 

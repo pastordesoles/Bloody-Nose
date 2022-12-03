@@ -343,7 +343,7 @@ const SessionForm = ({ isUpdate }: SessionFormProps): JSX.Element => {
               labelId="demo-simple-select-label"
               id="style-select"
               data-testid="my-wrapper"
-              value={initialForm.style || style}
+              value={initialForm.style}
               label="Style"
               variant="outlined"
               onChange={handleChange}

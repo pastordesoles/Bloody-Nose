@@ -22,7 +22,7 @@ describe("Given a Session form component", () => {
       const labelTitle = "title";
       const labelLocation = "location";
 
-      const nameButton = "CREATE";
+      const nameButton = "SUBMIT";
 
       renderWithProviders(<SessionForm isUpdate={false} />);
 
@@ -70,7 +70,7 @@ describe("Given a Session form component", () => {
       await userEvent.type(material, "fffff");
       await userEvent.upload(picture!, image);
 
-      const button = screen.queryByRole("button", { name: "CREATE" })!;
+      const button = screen.queryByRole("button", { name: "SUBMIT" })!;
 
       const selectLabel = /style/i;
       const selectEl = await screen.findByLabelText(selectLabel);
@@ -118,7 +118,7 @@ describe("Given a Session form component", () => {
       await userEvent.type(material, "fffff");
       await userEvent.upload(picture!, image);
 
-      const button = screen.queryByRole("button", { name: "UPDATE" })!;
+      const button = screen.queryByRole("button", { name: "SUBMIT" })!;
 
       const selectLabel = /style/i;
       const selectEl = await screen.findByLabelText(selectLabel);

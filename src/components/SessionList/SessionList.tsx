@@ -1,11 +1,12 @@
 import { useAppSelector } from "../../redux/hooks";
-import { Grid, Box } from "@mui/material";
+import { Grid } from "@mui/material";
 import SessionCard from "../SessionCard/SessionCard";
+import SessionListStyled from "./SessionListStyled";
 
 const SessionList = (): JSX.Element => {
   const { sessions } = useAppSelector((state) => state.sessions);
   return (
-    <Box sx={{ flexGrow: 1 }} aria-label="list container">
+    <SessionListStyled sx={{ flexGrow: 1 }} aria-label="list container">
       <Grid
         container
         sx={{ padding: 2 }}
@@ -27,7 +28,7 @@ const SessionList = (): JSX.Element => {
           </Grid>
         ))}
       </Grid>
-    </Box>
+    </SessionListStyled>
   );
 };
 

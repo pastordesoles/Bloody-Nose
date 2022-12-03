@@ -99,7 +99,7 @@ describe("Given a sessionsReducer", () => {
         sessions: [],
         session: {} as Session,
       };
-      const actionPayload: Session[] = getRandomSessionsList(10);
+      const actionPayload: Session[] = getRandomSessionsList(1);
       const expectedState: SessionsState = {
         sessions: actionPayload,
         session: {} as Session,

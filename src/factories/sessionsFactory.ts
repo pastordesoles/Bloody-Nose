@@ -17,6 +17,7 @@ const sessionsFactory = Factory.define<Session>(() => ({
   picture: faker.image.avatar(),
   supabasePicture: faker.image.avatar(),
   owner: faker.random.word(),
+  id: faker.random.alphaNumeric(),
 }));
 
 export const getRandomSession = () => sessionsFactory.build();

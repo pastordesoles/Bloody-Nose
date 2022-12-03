@@ -17,7 +17,14 @@ const sessionsSlice = createSlice({
 
     addSessions: (currentSessionsState, action: PayloadAction<Session[]>) => ({
       ...currentSessionsState,
-      sessions: [...currentSessionsState.sessions, ...action.payload],
+      sessions: [...currentSessionsState.sessions, ...action.payload].filter(
+        (session, index, self) =>
+          self.findIndex((sessionIndex) => {
+            return (
+              sessionIndex.id === session.id && sessionIndex.id === session.id
+            );
+          }) === index
+      ),
     }),
 
     loadOneSession: (currentSessionsState, action: PayloadAction<Session>) => ({

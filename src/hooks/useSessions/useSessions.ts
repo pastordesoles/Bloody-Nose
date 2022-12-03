@@ -43,7 +43,7 @@ const useSessions = () => {
   );
 
   const loadAllsessions = useCallback(
-    async (page = 0, limit = 5) => {
+    async (page = 0, limit = 6) => {
       try {
         dispatch(showLoadingActionCreator());
         const response = await axios.get<GetAllSessionsResponseBody>(

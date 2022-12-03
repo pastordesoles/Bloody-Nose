@@ -6,6 +6,7 @@ import {
   FormControl,
   InputLabel,
   MenuItem,
+  Grid,
 } from "@mui/material";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { useEffect, useState } from "react";
@@ -56,6 +57,7 @@ const SessionForm = ({ isUpdate }: SessionFormProps): JSX.Element => {
   };
 
   const [initialForm, setInitialForm] = useState(userData);
+  const [imagePreviewUrl, setImagePreviewUrl] = useState("");
 
   useEffect(() => {
     if (isUpdate) {
@@ -83,6 +85,9 @@ const SessionForm = ({ isUpdate }: SessionFormProps): JSX.Element => {
 
         [event.target.id]: files[0],
       });
+
+      const url = URL.createObjectURL(files[0]);
+      setImagePreviewUrl(url);
       return;
     }
 
@@ -256,7 +261,7 @@ const SessionForm = ({ isUpdate }: SessionFormProps): JSX.Element => {
             label="Length"
             margin="normal"
             InputLabelProps={{ style: { color: "#000000" } }}
-            value={initialForm.length || 0}
+            value={initialForm.length || ""}
           />
 
           <TextField
@@ -329,7 +334,7 @@ const SessionForm = ({ isUpdate }: SessionFormProps): JSX.Element => {
             label="Participants"
             margin="normal"
             InputLabelProps={{ style: { color: "#000000" } }}
-            value={initialForm.participants || 0}
+            value={initialForm.participants || ""}
           />
 
           <FormControl fullWidth required>
@@ -349,6 +354,18 @@ const SessionForm = ({ isUpdate }: SessionFormProps): JSX.Element => {
               <MenuItem value={"kickboxing"}>Kickboxing</MenuItem>
             </Select>
           </FormControl>
+
+          {imagePreviewUrl && (
+            <Grid container item justifyContent={"center"}>
+              <img
+                src={imagePreviewUrl}
+                alt="preview"
+                width={"100%"}
+                height={"300px"}
+                style={{ objectFit: "cover" }}
+              />
+            </Grid>
+          )}
 
           <TextField
             fullWidth

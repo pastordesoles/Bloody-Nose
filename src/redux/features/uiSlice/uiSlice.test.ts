@@ -1,6 +1,7 @@
 import { Pagination, UiState } from "./types";
 import {
   advancePageActionCreator,
+  changeStyleActionCreator,
   closeModalActionCreator,
   hideLoadingActionCreator,
   loadPagesActionCreator,
@@ -16,6 +17,7 @@ describe("Given closeModalReducer", () => {
         isError: false,
         modalText: "",
         showModal: true,
+        style: "all",
         isLoading: false,
         pagination: {
           currentPage: 0,
@@ -39,6 +41,7 @@ describe("Given openModalReducer", () => {
   const mockUiState: UiState = {
     isError: false,
     modalText: "",
+    style: "all",
     showModal: false,
     isLoading: false,
     pagination: {
@@ -61,6 +64,7 @@ describe("Given openModalReducer", () => {
         modalText: actionPayload.modalText,
         isError: actionPayload.isError,
         isLoading: false,
+        style: "all",
         pagination: {
           currentPage: 0,
           totalPages: 0,
@@ -82,6 +86,7 @@ describe("Given showLoading reducer", () => {
     isError: false,
     modalText: "",
     showModal: false,
+    style: "all",
     isLoading: false,
     pagination: {
       currentPage: 0,
@@ -98,6 +103,7 @@ describe("Given showLoading reducer", () => {
         showModal: false,
         modalText: "",
         isError: false,
+        style: "all",
         isLoading: true,
         pagination: {
           currentPage: 0,
@@ -117,6 +123,7 @@ describe("Given hideLoading reducer", () => {
     isError: false,
     modalText: "",
     showModal: false,
+    style: "all",
     isLoading: true,
     pagination: {
       currentPage: 0,
@@ -133,6 +140,7 @@ describe("Given hideLoading reducer", () => {
         showModal: false,
         modalText: "",
         isError: false,
+        style: "all",
         isLoading: false,
         pagination: {
           currentPage: 0,
@@ -191,6 +199,38 @@ describe("Given an advance pages reducer", () => {
       const newState = uiReducer(initialState as UiState, action);
 
       expect(newState).toHaveProperty("pagination", expectedPagination);
+    });
+  });
+});
+
+describe("Given a changeStyle reducer", () => {
+  describe("When it recieves an initial state with style 'all' and an action to change it to karate", () => {
+    test("Then it should return a new state with with 'karate' as style", () => {
+      const mockUiState: UiState = {
+        isError: false,
+        modalText: "",
+        showModal: true,
+        style: "all",
+        isLoading: false,
+        pagination: {
+          currentPage: 0,
+          totalPages: 0,
+        },
+      };
+
+      const actionPayload = "karate";
+
+      const expectedUiState: UiState = {
+        ...mockUiState,
+        style: "karate",
+      };
+
+      const newUiState = uiReducer(
+        mockUiState,
+        changeStyleActionCreator(actionPayload)
+      );
+
+      expect(newUiState).toStrictEqual(expectedUiState);
     });
   });
 });

@@ -3,6 +3,7 @@ export interface UiState {
   isError: boolean;
   modalText: string;
   isLoading: boolean;
+  style: string;
   pagination: {
     currentPage: number;
     totalPages: number;

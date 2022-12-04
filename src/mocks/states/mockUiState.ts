@@ -3,6 +3,7 @@ import { UiState } from "../../redux/features/uiSlice/types";
 const mockUiState: UiState = {
   isLoading: false,
   isError: false,
+  style: "all",
   modalText: "",
   showModal: false,
   pagination: {

@@ -5,6 +5,7 @@ const initialState: UiState = {
   isError: false,
   modalText: "",
   showModal: false,
+  style: "all",
   isLoading: false,
   pagination: {
     currentPage: 0,
@@ -55,6 +56,11 @@ const uiSlice = createSlice({
         currentPage: currentUiState.pagination.currentPage + 1,
       },
     }),
+
+    changeStyle: (currentUiState, action: PayloadAction<string>) => ({
+      ...currentUiState,
+      style: action.payload,
+    }),
   },
 });
 
@@ -67,4 +73,5 @@ export const {
   hideLoading: hideLoadingActionCreator,
   loadPages: loadPagesActionCreator,
   advancePage: advancePageActionCreator,
+  changeStyle: changeStyleActionCreator,
 } = uiSlice.actions;

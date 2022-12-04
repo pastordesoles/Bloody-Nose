@@ -148,7 +148,7 @@ const SessionForm = ({ isUpdate }: SessionFormProps): JSX.Element => {
   return (
     <Box
       sx={{
-        paddingTop: 2,
+        padding: 2,
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",

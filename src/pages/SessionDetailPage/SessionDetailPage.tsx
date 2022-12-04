@@ -6,6 +6,7 @@ import SessionsDetailStyled from "./SessionDetailStyled";
 import Loader from "../../components/Loader/Loader";
 import { useParams } from "react-router-dom";
 import SessionCard from "../../components/SessionCard/SessionCard";
+import StickyFooter from "../../components/Footer/Footer";
 
 const SessionDetailPage = () => {
   const { loadOneSession } = useSessions();
@@ -24,6 +25,7 @@ const SessionDetailPage = () => {
         {session && <SessionCard session={session} isDetail={true} />}
         {isLoading && <Loader />}
       </SessionsDetailStyled>
+      <StickyFooter />
     </>
   );
 };

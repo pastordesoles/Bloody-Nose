@@ -1,3 +1,4 @@
+import StickyFooter from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import Loader from "../../components/Loader/Loader";
 import SessionForm from "../../components/SessionForm/SessionForm";
@@ -14,6 +15,7 @@ const UpdatePage = () => {
         <SessionForm isUpdate={true} />
         {isLoading && <Loader />}
       </UpdatePageStyled>
+      <StickyFooter />
     </>
   );
 };

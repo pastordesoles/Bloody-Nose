@@ -7,6 +7,7 @@ import useSessions from "../../hooks/useSessions/useSessions";
 import { useAppSelector } from "../../redux/hooks";
 import SessionsPageStyled from "./SessionsPageStyled";
 import Loader from "../../components/Loader/Loader";
+import StickyFooter from "../../components/Footer/Footer";
 
 const SessionsPage = () => {
   const { loadAllsessions, loadMoresessions } = useSessions();
@@ -38,6 +39,7 @@ const SessionsPage = () => {
         </Grid>
       )}
       {isLoading && <Loader />}
+      <StickyFooter />
     </SessionsPageStyled>
   );
 };

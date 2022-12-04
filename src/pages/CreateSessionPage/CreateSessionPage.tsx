@@ -1,3 +1,4 @@
+import StickyFooter from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import Loader from "../../components/Loader/Loader";
 
@@ -14,6 +15,7 @@ const CreateSessionPage = () => {
         <SessionForm isUpdate={false} />
       </CreateSessionPageStyled>
       {isLoading && <Loader />}
+      <StickyFooter />
     </>
   );
 };

@@ -8,6 +8,7 @@ import { useAppSelector } from "../../redux/hooks";
 import SessionsPageStyled from "./SessionsPageStyled";
 import Loader from "../../components/Loader/Loader";
 import StickyFooter from "../../components/Footer/Footer";
+import Filter from "../../components/Filter/Filter";
 
 const SessionsPage = () => {
   const { loadAllsessions, loadMoresessions } = useSessions();
@@ -15,19 +16,21 @@ const SessionsPage = () => {
     (state) => state.ui.pagination
   );
   const isLoading = useAppSelector((state) => state.ui.isLoading);
+  const currentStyle = useAppSelector((state) => state.ui.style);
   const isLastPage = currentPage === totalPages - 1;
 
   useEffect(() => {
     if (currentPage === 0) {
-      loadAllsessions(currentPage);
+      loadAllsessions(currentPage, currentStyle);
     } else {
-      loadMoresessions(currentPage);
+      loadMoresessions(currentPage, currentStyle);
     }
-  }, [currentPage, loadAllsessions, loadMoresessions]);
+  }, [currentPage, currentStyle, loadAllsessions, loadMoresessions]);
 
   return (
     <SessionsPageStyled>
       <Header />
+      <Filter />
       <SessionList />
       {!isLastPage && !isLoading && (
         <Grid item className="loadmore">

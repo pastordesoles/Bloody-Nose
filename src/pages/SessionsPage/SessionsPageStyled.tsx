@@ -3,6 +3,8 @@ import styled from "styled-components";
 const SessionsPageStyled = styled.main`
   height: 100vh;
   background-color: #3c1212;
+  display: flex;
+  flex-direction: column;
 
   .loadmore {
     display: flex;

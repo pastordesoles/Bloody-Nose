@@ -43,13 +43,13 @@ const useSessions = () => {
   );
 
   const loadAllsessions = useCallback(
-    async (page = 0, limit = 6) => {
+    async (page = 0, style = "all") => {
       try {
         dispatch(showLoadingActionCreator());
         const response = await axios.get<GetAllSessionsResponseBody>(
           `${apiUrl}${sessionsRoute}${listRoute}`,
           {
-            params: { page, limit },
+            params: { page, style },
             ...authHeaders,
           }
         );
@@ -60,6 +60,39 @@ const useSessions = () => {
         const sessionsList: Session[] = sessions;
 
         dispatch(loadSessionsActionCreator(sessionsList));
+        dispatch(loadPagesActionCreator({ totalPages, currentPage }));
+        dispatch(hideLoadingActionCreator());
+      } catch (error: unknown) {
+        dispatch(hideLoadingActionCreator());
+        dispatch(
+          openModalActionCreator({
+            isError: true,
+            modalText: "Error loading all sessions",
+          })
+        );
+      }
+    },
+    [dispatch, authHeaders]
+  );
+
+  const loadMoresessions = useCallback(
+    async (page = 0, style = "all") => {
+      try {
+        dispatch(showLoadingActionCreator());
+        const response = await axios.get<GetAllSessionsResponseBody>(
+          `${apiUrl}${sessionsRoute}${listRoute}`,
+          {
+            params: { page, style },
+            ...authHeaders,
+          }
+        );
+
+        const { totalPages } = response.data.sessions;
+        const currentPage = page;
+        const sessions = response.data.sessions.sessions;
+        const sessionsList: Session[] = sessions;
+
+        dispatch(addSessionsActionCreator(sessionsList));
         dispatch(loadPagesActionCreator({ totalPages, currentPage }));
         dispatch(hideLoadingActionCreator());
       } catch (error: unknown) {
@@ -99,39 +132,6 @@ const useSessions = () => {
       }
     },
     [authHeaders, dispatch]
-  );
-
-  const loadMoresessions = useCallback(
-    async (page = 0, limit = 6) => {
-      try {
-        dispatch(showLoadingActionCreator());
-        const response = await axios.get<GetAllSessionsResponseBody>(
-          `${apiUrl}${sessionsRoute}${listRoute}`,
-          {
-            params: { page, limit },
-            ...authHeaders,
-          }
-        );
-
-        const { totalPages } = response.data.sessions;
-        const currentPage = page;
-        const sessions = response.data.sessions.sessions;
-        const sessionsList: Session[] = sessions;
-
-        dispatch(addSessionsActionCreator(sessionsList));
-        dispatch(loadPagesActionCreator({ totalPages, currentPage }));
-        dispatch(hideLoadingActionCreator());
-      } catch (error: unknown) {
-        dispatch(hideLoadingActionCreator());
-        dispatch(
-          openModalActionCreator({
-            isError: true,
-            modalText: "Error loading all sessions",
-          })
-        );
-      }
-    },
-    [dispatch, authHeaders]
   );
 
   const addOneSession = async (sessionFormData: Session) => {

@@ -88,7 +88,7 @@ describe("Given a Session form component", () => {
     });
   });
 
-  describe("When its rendered and its 'SUBMIT' button is clicked", () => {
+  describe("When its rendered and its 'SUBMIT' button is clicked for an update", () => {
     test("Then the form should be submitted", async () => {
       const image = new File(["avatar"], "avatar.jpg", {
         type: "image/jpg",

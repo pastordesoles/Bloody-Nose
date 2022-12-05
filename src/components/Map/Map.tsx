@@ -1,4 +1,4 @@
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { MapContainer, TileLayer } from "react-leaflet";
 import LocationMarker from "../LocationMarker/LocationMarker";
 
 type OpenStreetMapProps = {
@@ -21,11 +21,6 @@ const OpenStreetMap = ({
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       />
       <LocationMarker />
-      <Marker position={center}>
-        <Popup>
-          Hello Mireia. <br /> Easily customizable.
-        </Popup>
-      </Marker>
     </MapContainer>
   );
 };

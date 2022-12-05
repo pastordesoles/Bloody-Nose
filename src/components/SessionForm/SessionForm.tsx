@@ -16,6 +16,8 @@ import SessionFormStyled from "./SessionFormStyled";
 import { useAppSelector } from "../../redux/hooks";
 import { useParams } from "react-router-dom";
 
+import OpenStreetMap from "../Map/Map";
+
 export interface InitialUserData {
   content: string;
   date: string;
@@ -226,6 +228,13 @@ const SessionForm = ({ isUpdate }: SessionFormProps): JSX.Element => {
             InputLabelProps={{ style: { color: "#000000" } }}
             value={initialForm.title || ""}
           />
+
+          <OpenStreetMap
+            center={[41.3851, 2.1734]} // Barcelona
+            zoom={12}
+            height={200}
+            width={400}
+          />
           <TextField
             required
             fullWidth
@@ -245,6 +254,7 @@ const SessionForm = ({ isUpdate }: SessionFormProps): JSX.Element => {
             InputLabelProps={{ style: { color: "#000000" } }}
             value={initialForm.location || ""}
           />
+
           <TextField
             required
             fullWidth

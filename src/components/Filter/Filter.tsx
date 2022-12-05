@@ -25,7 +25,11 @@ const Filter = (): JSX.Element => {
 
   return (
     <SelectStyled sx={{ minWidth: 100 }}>
-      <FormControl fullWidth variant="filled" className="select">
+      <FormControl
+        sx={{ width: "fit-content" }}
+        variant="filled"
+        className="select"
+      >
         <InputLabel id="demo-simple-select-label">Styles</InputLabel>
         <Select
           labelId="demo-simple-select-label"

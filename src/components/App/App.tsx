@@ -83,7 +83,16 @@ function App() {
           }
         />
 
-        <Route path="/edit/:id" element={<UpdatePage />} />
+        <Route
+          path="/edit/:id"
+          element={
+            isLogged && (
+              <ExitRoute isLogged={isLogged}>
+                <UpdatePage />
+              </ExitRoute>
+            )
+          }
+        />
 
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

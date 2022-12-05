@@ -54,7 +54,7 @@ const SessionCard = ({
       <CardMedia
         component="img"
         alt={title}
-        height="250"
+        height="200"
         src={picture as string}
       />
       <CardContent>

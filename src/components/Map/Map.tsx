@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import LocationMarker from "../LocationMarker/LocationMarker";
 
 type OpenStreetMapProps = {
   center: [number, number];
@@ -7,25 +7,6 @@ type OpenStreetMapProps = {
   height: number;
   width: number;
 };
-
-function LocationMarker() {
-  const [position, setPosition] = useState(null);
-
-  const map = useMap();
-
-  useEffect(() => {
-    map.locate().on("locationfound", function (event) {
-      setPosition(event.latlng as any);
-      map.flyTo(event.latlng, map.getZoom());
-    });
-  }, [map]);
-
-  return position === null ? null : (
-    <Marker position={position}>
-      <Popup>You are here</Popup>
-    </Marker>
-  );
-}
 
 const OpenStreetMap = ({
   center,

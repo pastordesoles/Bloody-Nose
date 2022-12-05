@@ -26,7 +26,7 @@ export interface InitialUserData {
   participants: number;
   style: string;
   title: string;
-  picture: File;
+  picture: File | string;
 }
 
 interface SessionFormProps {
@@ -67,7 +67,10 @@ const SessionForm = ({ isUpdate }: SessionFormProps): JSX.Element => {
 
   useEffect(() => {
     if (isUpdate) {
-      setInitialForm(session as InitialUserData);
+      setInitialForm({
+        ...session,
+        picture: ""!,
+      });
     }
   }, [isUpdate, session]);
 
@@ -113,6 +116,23 @@ const SessionForm = ({ isUpdate }: SessionFormProps): JSX.Element => {
     };
 
     if (isUpdate) {
+      if (formDataToSubmit.picture === "") {
+        const newFormData = {
+          title: initialForm.title,
+          content: initialForm.content,
+          date: initialForm.date,
+          length: initialForm.length,
+          level: initialForm.level,
+          location: initialForm.location,
+          material: initialForm.material,
+          participants: initialForm.participants,
+          style: style,
+        };
+
+        await updateOneSession(newFormData, session.id!);
+        return;
+      }
+
       await updateOneSession(formDataToSubmit, session.id!);
       return;
     }

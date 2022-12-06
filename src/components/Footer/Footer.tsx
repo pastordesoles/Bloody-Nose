@@ -5,7 +5,7 @@ import Container from "@mui/material/Container";
 const StickyFooter = (): JSX.Element => {
   return (
     <Box
-      component="footer"
+      component="div"
       sx={{
         py: 3,
         px: 2,
@@ -14,7 +14,7 @@ const StickyFooter = (): JSX.Element => {
         color: "#d3d4d9",
       }}
       aria-label="author"
-      role="footer"
+      role="contentinfo"
     >
       <Container
         maxWidth="sm"

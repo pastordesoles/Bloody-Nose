@@ -8,7 +8,7 @@ describe("Given a Footer component", () => {
       const title = "author";
       renderWithProviders(<Footer />);
 
-      const heading = screen.getByRole("footer", { name: title });
+      const heading = screen.getByRole("contentinfo", { name: title });
 
       expect(heading).toBeInTheDocument();
     });

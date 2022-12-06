@@ -230,10 +230,10 @@ const SessionForm = ({ isUpdate }: SessionFormProps): JSX.Element => {
           />
 
           <OpenStreetMap
-            center={[41.3851, 2.1734]} // Barcelona
+            center={[41.3851, 2.1734]}
             zoom={12}
             height={200}
-            width={447}
+            width={"100%"}
           />
 
           <TextField

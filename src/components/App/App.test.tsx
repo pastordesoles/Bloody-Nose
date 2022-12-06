@@ -111,6 +111,42 @@ describe("Given an App component", () => {
     });
   });
 
+  describe("When the user is logged and goes to the create page", () => {
+    test("Then it should be redirected to the create page", async () => {
+      const store = mockStore({ userPreloadState: mockUserStateLogged });
+      const initialEntries = ["/create"];
+      const title = "Bloody Nose";
+
+      renderWithProviders(<App />, { store, initialEntries });
+
+      await waitFor(() => {
+        const heading = screen.queryByRole("heading", {
+          name: title,
+          level: 1,
+        });
+        expect(heading).toBeInTheDocument();
+      });
+    });
+  });
+
+  describe("When the user is logged and goes to the edit page", () => {
+    test("Then it should be redirected to the edit page", async () => {
+      const store = mockStore({ userPreloadState: mockUserStateLogged });
+      const initialEntries = ["/edit/:id"];
+      const title = "Bloody Nose";
+
+      renderWithProviders(<App />, { store, initialEntries });
+
+      await waitFor(() => {
+        const heading = screen.queryByRole("heading", {
+          name: title,
+          level: 1,
+        });
+        expect(heading).toBeInTheDocument();
+      });
+    });
+  });
+
   describe("When there is a success modal", () => {
     test("Then it should show a success modal", () => {
       const mockUiPreloadedState: Partial<UiState> = {

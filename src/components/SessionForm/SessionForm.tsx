@@ -233,8 +233,9 @@ const SessionForm = ({ isUpdate }: SessionFormProps): JSX.Element => {
             center={[41.3851, 2.1734]} // Barcelona
             zoom={12}
             height={200}
-            width={400}
+            width={447}
           />
+
           <TextField
             required
             fullWidth

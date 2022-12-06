@@ -9,8 +9,6 @@ import useToken from "../../hooks/useToken/useToken";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import ExitRoute from "../ExitRoute/ExitRoute";
 import SessionDetailPage from "../../pages/SessionDetailPage/SessionDetailPage";
-import CreateSessionPage from "../../pages/CreateSessionPage/CreateSessionPage";
-import UpdatePage from "../../pages/UpdateSession/UpdatePage";
 
 const SessionsPage = lazy(
   () => import("../../pages/SessionsPage/SessionsPage")
@@ -19,6 +17,12 @@ const SessionsPage = lazy(
 const NotFoundPage = lazy(
   () => import("../../pages/NotFoundPage/NotFoundPage")
 );
+
+const CreateSessionPage = lazy(
+  () => import("../../pages/CreateSessionPage/CreateSessionPage")
+);
+
+const UpdatePage = lazy(() => import("../../pages/UpdateSession/UpdatePage"));
 
 function App() {
   const uiOptions = useAppSelector(({ ui }) => ui);
@@ -32,33 +36,37 @@ function App() {
 
   return (
     <>
-      <Suspense fallback={<Loader />} />
-
       <Routes>
         <Route
           path="/"
           element={
-            <ProtectedRoute isLogged={isLogged}>
-              <RegisterPage />
-            </ProtectedRoute>
+            <Suspense fallback={<Loader />}>
+              <ProtectedRoute isLogged={isLogged}>
+                <RegisterPage />
+              </ProtectedRoute>
+            </Suspense>
           }
         />
 
         <Route
           path="/login"
           element={
-            <ProtectedRoute isLogged={isLogged}>
-              <LoginPage />
-            </ProtectedRoute>
+            <Suspense fallback={<Loader />}>
+              <ProtectedRoute isLogged={isLogged}>
+                <LoginPage />
+              </ProtectedRoute>
+            </Suspense>
           }
         />
 
         <Route
           path="/sessions"
           element={
-            <ExitRoute isLogged={isLogged}>
-              <SessionsPage />
-            </ExitRoute>
+            <Suspense fallback={<Loader />}>
+              <ExitRoute isLogged={isLogged}>
+                <SessionsPage />
+              </ExitRoute>
+            </Suspense>
           }
         />
 
@@ -66,9 +74,11 @@ function App() {
           path="/session/:id"
           element={
             isLogged && (
-              <ExitRoute isLogged={isLogged}>
-                <SessionDetailPage />
-              </ExitRoute>
+              <Suspense fallback={<Loader />}>
+                <ExitRoute isLogged={isLogged}>
+                  <SessionDetailPage />
+                </ExitRoute>
+              </Suspense>
             )
           }
         />
@@ -76,9 +86,11 @@ function App() {
           path="/create"
           element={
             isLogged && (
-              <ExitRoute isLogged={isLogged}>
-                <CreateSessionPage />
-              </ExitRoute>
+              <Suspense fallback={<Loader />}>
+                <ExitRoute isLogged={isLogged}>
+                  <CreateSessionPage />
+                </ExitRoute>
+              </Suspense>
             )
           }
         />
@@ -87,16 +99,25 @@ function App() {
           path="/edit/:id"
           element={
             isLogged && (
-              <ExitRoute isLogged={isLogged}>
-                <UpdatePage />
-              </ExitRoute>
+              <Suspense fallback={<Loader />}>
+                <ExitRoute isLogged={isLogged}>
+                  <UpdatePage />
+                </ExitRoute>
+              </Suspense>
             )
           }
         />
 
-        <Route path="*" element={<NotFoundPage />} />
+        <Route
+          path="*"
+          element={
+            <Suspense fallback={<Loader />}>
+              <NotFoundPage />
+            </Suspense>
+          }
+        />
       </Routes>
-      <Suspense />
+
       {uiOptions.showModal && !uiOptions.isError && (
         <Toast
           severity="success"

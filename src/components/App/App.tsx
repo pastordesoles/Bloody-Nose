@@ -9,6 +9,8 @@ import useToken from "../../hooks/useToken/useToken";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import ExitRoute from "../ExitRoute/ExitRoute";
 import SessionDetailPage from "../../pages/SessionDetailPage/SessionDetailPage";
+import UpdatePage from "../../pages/UpdateSession/UpdatePage";
+import CreateSessionPage from "../../pages/CreateSessionPage/CreateSessionPage";
 
 const SessionsPage = lazy(
   () => import("../../pages/SessionsPage/SessionsPage")
@@ -17,12 +19,6 @@ const SessionsPage = lazy(
 const NotFoundPage = lazy(
   () => import("../../pages/NotFoundPage/NotFoundPage")
 );
-
-const CreateSessionPage = lazy(
-  () => import("../../pages/CreateSessionPage/CreateSessionPage")
-);
-
-const UpdatePage = lazy(() => import("../../pages/UpdateSession/UpdatePage"));
 
 function App() {
   const uiOptions = useAppSelector(({ ui }) => ui);
@@ -86,11 +82,9 @@ function App() {
           path="/create"
           element={
             isLogged && (
-              <Suspense fallback={<Loader />}>
-                <ExitRoute isLogged={isLogged}>
-                  <CreateSessionPage />
-                </ExitRoute>
-              </Suspense>
+              <ExitRoute isLogged={isLogged}>
+                <CreateSessionPage />
+              </ExitRoute>
             )
           }
         />
@@ -99,11 +93,9 @@ function App() {
           path="/edit/:id"
           element={
             isLogged && (
-              <Suspense fallback={<Loader />}>
-                <ExitRoute isLogged={isLogged}>
-                  <UpdatePage />
-                </ExitRoute>
-              </Suspense>
+              <ExitRoute isLogged={isLogged}>
+                <UpdatePage />
+              </ExitRoute>
             )
           }
         />

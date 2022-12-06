@@ -11,6 +11,7 @@ const CreateSessionPage = () => {
   return (
     <>
       <Header />
+
       <CreateSessionPageStyled>
         <SessionForm isUpdate={false} />
       </CreateSessionPageStyled>

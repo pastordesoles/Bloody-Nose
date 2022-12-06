@@ -30,6 +30,7 @@ const SessionsPage = () => {
   return (
     <SessionsPageStyled>
       <Header />
+
       <Filter />
       <SessionList />
       {!isLastPage && !isLoading && (

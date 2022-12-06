@@ -1,4 +1,3 @@
-import "leaflet-control-geocoder/dist/Control.Geocoder.css";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import LocationMarker from "../LocationMarker/LocationMarker";
 

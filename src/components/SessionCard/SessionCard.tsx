@@ -60,7 +60,7 @@ const SessionCard = ({
       <CardContent>
         <SessionCardStyled
           gutterBottom
-          variant="h5"
+          variant="h2"
           display="flex"
           justifyContent="center"
         >

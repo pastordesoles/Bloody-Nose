@@ -12,19 +12,19 @@ type OpenStreetMapProps = {
   width: number;
 };
 
-const GetCoordinates = () => {
-  const map = useMap();
+// const GetCoordinates = () => {
+//   const map = useMap();
 
-  useEffect(() => {
-    if (!map) return;
-    new Geocoder({
-      geocoder: new geocoders.Nominatim(),
-      position: "topleft",
-    }).addTo(map);
-  }, [map]);
+//   useEffect(() => {
+//     if (!map) return;
+//     new Geocoder({
+//       geocoder: new geocoders.Nominatim(),
+//       position: "topleft",
+//     }).addTo(map);
+//   }, [map]);
 
-  return null;
-};
+//   return null;
+// };
 
 const OpenStreetMap = ({
   center,
@@ -38,7 +38,7 @@ const OpenStreetMap = ({
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       />
-      <GetCoordinates />
+      {/* <GetCoordinates /> */}
       <LocationMarker />
     </MapContainer>
   );

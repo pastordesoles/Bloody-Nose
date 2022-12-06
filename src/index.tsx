@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { CssBaseline } from "@mui/material";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
@@ -9,6 +9,7 @@ import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import { BrowserRouter } from "react-router-dom";
 import "@fontsource/coustard";
 import "@fontsource/montserrat";
+import Loader from "./components/Loader/Loader";
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);
@@ -18,7 +19,9 @@ root.render(
     <Provider store={store}>
       <CssBaseline>
         <BrowserRouter>
+          <Suspense fallback={"Loading..."} />
           <App />
+          <Suspense />
         </BrowserRouter>
       </CssBaseline>
     </Provider>

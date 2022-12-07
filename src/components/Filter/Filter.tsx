@@ -2,8 +2,8 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-import SelectStyled from "./FilterStyled";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import SelectStyled from "./FilterStyled";
 import {
   changeStyleActionCreator,
   loadPagesActionCreator,
@@ -30,10 +30,10 @@ const Filter = (): JSX.Element => {
         variant="filled"
         className="select"
       >
-        <InputLabel id="demo-simple-select-label">Styles</InputLabel>
+        <InputLabel id="style-select-label">Styles</InputLabel>
         <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
+          labelId="style-select-label"
+          id="style-select"
           value={currentStyle}
           label="Styles"
           onChange={handleFilterChange}

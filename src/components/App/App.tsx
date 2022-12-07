@@ -88,7 +88,7 @@ function App() {
           path="/create"
           element={
             isLogged && (
-              <Suspense fallback={<>...</>}>
+              <Suspense fallback={<Loader />}>
                 <ExitRoute isLogged={isLogged}>
                   <CreateSessionPage />
                 </ExitRoute>
@@ -100,7 +100,7 @@ function App() {
           path="/edit/:id"
           element={
             isLogged && (
-              <Suspense fallback={<>...</>}>
+              <Suspense fallback={<Loader />}>
                 <ExitRoute isLogged={isLogged}>
                   <UpdatePage />
                 </ExitRoute>

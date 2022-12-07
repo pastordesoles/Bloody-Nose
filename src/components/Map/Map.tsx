@@ -1,5 +1,7 @@
+import L from "leaflet";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import LocationMarker from "../LocationMarker/LocationMarker";
+import icon from "./fight-svgrepo-com.svg";
 
 type OpenStreetMapProps = {
   center: [number, number];
@@ -8,13 +10,18 @@ type OpenStreetMapProps = {
   width: string;
 };
 
+export const iconPerson = new L.Icon({
+  iconUrl: icon,
+  iconSize: new L.Point(30, 30),
+});
+
 const sessionsLocations = [
   { lat: 41.377, lng: 2.1488 },
   { lat: 41.378, lng: 2.1577 },
   { lat: 41.379, lng: 2.1628 },
 ];
 
-const OpenStreetMap = ({
+export const OpenStreetMap = ({
   center,
   zoom,
   height,
@@ -27,7 +34,7 @@ const OpenStreetMap = ({
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       />
       {sessionsLocations.map((coordinata, index) => (
-        <Marker key={index} position={coordinata}>
+        <Marker key={index} position={coordinata} icon={iconPerson}>
           <Popup>Session here!</Popup>
         </Marker>
       ))}
@@ -35,5 +42,3 @@ const OpenStreetMap = ({
     </MapContainer>
   );
 };
-
-export default OpenStreetMap;

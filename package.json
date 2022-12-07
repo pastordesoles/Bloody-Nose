@@ -82,7 +82,8 @@
       "!src/service-worker.ts",
       "!src/serviceWorkerRegistration.ts",
       "!src/components/App/__snapshots__/*.snap",
-      "!src/components/LocationMarker/LocationMarker.tsx"
+      "!src/components/LocationMarker/LocationMarker.tsx",
+      "!src/components/Map/fight-svgrepo-com.svg "
     ],
     "transformIgnorePatterns": [
       "node_modules/(?!@ngrx|(?!deck.gl)|ng-dynamic)"

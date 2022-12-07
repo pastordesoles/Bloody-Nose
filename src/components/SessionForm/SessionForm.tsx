@@ -1,22 +1,19 @@
 import "leaflet/dist/leaflet.css";
-import {
-  Paper,
-  TextField,
-  Box,
-  Typography,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Grid,
-} from "@mui/material";
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import Grid from "@mui/material/Grid";
+import { useParams } from "react-router-dom";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { useEffect, useState } from "react";
 import FormButton from "../FormButton/FormButton";
 import useSessions from "../../hooks/useSessions/useSessions";
 import SessionFormStyled from "./SessionFormStyled";
 import { useAppSelector } from "../../redux/hooks";
-import { useParams } from "react-router-dom";
-
 import { OpenStreetMap } from "../Map/Map";
 
 export interface InitialUserData {

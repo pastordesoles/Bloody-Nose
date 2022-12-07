@@ -1,5 +1,5 @@
 import { useAppSelector } from "../../redux/hooks";
-import { Grid } from "@mui/material";
+import Grid from "@mui/material/Grid";
 import SessionCard from "../SessionCard/SessionCard";
 import { SessionListStyled } from "./SessionListStyled";
 

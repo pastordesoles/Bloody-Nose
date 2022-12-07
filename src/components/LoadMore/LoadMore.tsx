@@ -3,7 +3,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { useAppDispatch } from "../../redux/hooks";
 import { Pagination } from "../../redux/features/uiSlice/types";
 import { advancePageActionCreator } from "../../redux/features/uiSlice/uiSlice";
-import Typography from "@mui/material/Typography/Typography";
+import Typography from "@mui/material/Typography";
 
 interface LoadMoreProps {
   isLoading: boolean;

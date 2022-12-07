@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import Typography from "@mui/material/Typography";
 import HeaderStyled from "./HeaderStyled";
 import { NavLink } from "react-router-dom";
 import useUser from "../../hooks/useUser/useUser";

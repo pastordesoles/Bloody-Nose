@@ -146,4 +146,32 @@ describe("Given an App component", () => {
       expect(toast).toBeInTheDocument();
     });
   });
+
+  describe("When the user is logged and goes to the create page", () => {
+    test("Then it should be redirected to the create page", async () => {
+      const store = mockStore({ userPreloadState: mockUserStateLogged });
+      const initialEntries = ["/create"];
+
+      renderWithProviders(<App />, { store, initialEntries });
+
+      await waitFor(() => {
+        const heading = screen.queryByRole("progressbar");
+        expect(heading).toBeInTheDocument();
+      });
+    });
+  });
+
+  describe("When the user is logged and goes to the edit page", () => {
+    test("Then it should be redirected to the edit page", async () => {
+      const store = mockStore({ userPreloadState: mockUserStateLogged });
+      const initialEntries = ["/edit/:id"];
+
+      renderWithProviders(<App />, { store, initialEntries });
+
+      await waitFor(() => {
+        const heading = screen.queryByRole("progressbar");
+        expect(heading).toBeInTheDocument();
+      });
+    });
+  });
 });

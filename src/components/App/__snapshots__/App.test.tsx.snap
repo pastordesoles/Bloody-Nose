@@ -85,6 +85,7 @@ exports[`Given an App component When it's rendered with path '/*' Then it should
         <div
           aria-label="password"
           className="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root input css-1rmt1wa-MuiFormControl-root-MuiTextField-root"
+          data-testid="password"
         >
           <label
             className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-colorPrimary Mui-required MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled css-e4w4as-MuiFormLabel-root-MuiInputLabel-root"

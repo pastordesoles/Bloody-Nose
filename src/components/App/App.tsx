@@ -9,8 +9,6 @@ import useToken from "../../hooks/useToken/useToken";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import ExitRoute from "../ExitRoute/ExitRoute";
 import SessionDetailPage from "../../pages/SessionDetailPage/SessionDetailPage";
-// import UpdatePage from "../../pages/UpdateSession/UpdatePage";
-// import CreateSessionPage from "../../pages/CreateSessionPage/CreateSessionPage";
 
 const CreateSessionPage = lazy(
   () => import("../../pages/CreateSessionPage/CreateSessionPage")

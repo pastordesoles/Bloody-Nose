@@ -1,4 +1,6 @@
-import { Paper, Box, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { UserCredentials } from "../../hooks/useUser/types";

@@ -115,24 +115,24 @@ const SessionForm = ({ isUpdate }: SessionFormProps): JSX.Element => {
       picture: initialForm.picture,
     };
 
+    if (isUpdate && formDataToSubmit.picture === "") {
+      const newFormData = {
+        title: initialForm.title,
+        content: initialForm.content,
+        date: initialForm.date,
+        length: initialForm.length,
+        level: initialForm.level,
+        location: initialForm.location,
+        material: initialForm.material,
+        participants: initialForm.participants,
+        style: style,
+      };
+
+      await updateOneSession(newFormData, session.id!);
+      return;
+    }
+
     if (isUpdate) {
-      if (formDataToSubmit.picture === "") {
-        const newFormData = {
-          title: initialForm.title,
-          content: initialForm.content,
-          date: initialForm.date,
-          length: initialForm.length,
-          level: initialForm.level,
-          location: initialForm.location,
-          material: initialForm.material,
-          participants: initialForm.participants,
-          style: style,
-        };
-
-        await updateOneSession(newFormData, session.id!);
-        return;
-      }
-
       await updateOneSession(formDataToSubmit, session.id!);
       return;
     }

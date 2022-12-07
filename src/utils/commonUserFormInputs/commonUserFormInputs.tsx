@@ -50,6 +50,7 @@ const commonUserFormInputs = (
         helperText={conditions.passwordField.message}
         FormHelperTextProps={{ style: { color: "#d3d4d9" } }}
         name="password"
+        data-testid="password"
         aria-label="password"
         label="Password"
         type="password"

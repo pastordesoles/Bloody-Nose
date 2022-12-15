@@ -1,9 +1,9 @@
 # Bloody Nose
 
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=isdi-coders-2022_Xavier-Sans_Front-Final-Project-202209-BCN&metric=coverage)](https://sonarcloud.io/summary/new_code?id=isdi-coders-2022_Xavier-Sans_Front-Final-Project-202209-BCN) [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=isdi-coders-2022_Xavier-Sans_Front-Final-Project-202209-BCN&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=isdi-coders-2022_Xavier-Sans_Front-Final-Project-202209-BCN) [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=isdi-coders-2022_Xavier-Sans_Front-Final-Project-202209-BCN&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=isdi-coders-2022_Xavier-Sans_Front-Final-Project-202209-BCN) [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=isdi-coders-2022_Xavier-Sans_Front-Final-Project-202209-BCN&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=isdi-coders-2022_Xavier-Sans_Front-Final-Project-202209-BCN) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=isdi-coders-2022_Xavier-Sans_Front-Final-Project-202209-BCN&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=isdi-coders-2022_Xavier-Sans_Front-Final-Project-202209-BCN) [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=isdi-coders-2022_Xavier-Sans_Front-Final-Project-202209-BCN&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=isdi-coders-2022_Xavier-Sans_Front-Final-Project-202209-BCN)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=pastordesoles_Bloody-Nose&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=pastordesoles_Bloody-Nose) [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=pastordesoles_Bloody-Nose&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=pastordesoles_Bloody-Nose) [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=pastordesoles_Bloody-Nose&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=pastordesoles_Bloody-Nose) [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=pastordesoles_Bloody-Nose&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=pastordesoles_Bloody-Nose) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=pastordesoles_Bloody-Nose&metric=coverage)](https://sonarcloud.io/summary/new_code?id=pastordesoles_Bloody-Nose) [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=pastordesoles_Bloody-Nose&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=pastordesoles_Bloody-Nose)
 
 > Find your perfect martial arts session with Bloody Nose.
-> Live demo [_here_](https://xavier-sans-final-project-202209-bcn.netlify.app/). <!-- If you have the project hosted somewhere, include the link here. -->
+> Live demo [_here_](https://bloody-nose.netlify.app/). <!-- If you have the project hosted somewhere, include the link here. -->
 
 ## Table of Contents
 
@@ -22,24 +22,38 @@
 
 This is my final project for the ISDI Coders web development bootcamp 2022-09 BCN Edition.
 It's an application that allows you to post martials arts training sessions and look for partners to help you improve in the discipline of your choice.
+
 As a martial arts enthusiast myself, I sometimes struggle to find training partners whenever I'm not in my dojo or when I try other styles just for fun.
+
 With this app I want to create a hub for people to help them find someone near them and never stop training.
+
+> API repository [_here_](https://github.com/pastordesoles/Bloody-Nose-api).
 
 ## Technologies Used
 
 - React
+- Redux Toolkit
+- Jest
+- Typescript
 - StyledComponents
 - Axios
 - Material UI
+- Faker-js
+- React-leaflet
+- Fishery
+- Workbox
+- MSW
+- Cypress
 
 ## Features
 
-- Register component created with Material UI.
-- Login component created with Material UI
-- Modals for errors and success feedback created with Material UI
-- Loader created with Material UI
+- Create a unique user and get into the Bloody Nose experience
+- Create, update and delete your own training sessions.
+- Filter sessions based on the style you prefer.
 
 ## Screenshots
+
+![Screenshots](public/images/readme-pictures.jpg)
 
 ## Setup
 
@@ -57,13 +71,18 @@ Project is: _in progress_
 
 ## Room for Improvement
 
-Room for improvement:
-
 To do:
+
+- Add private sessions list.
+- Enable joining a session.
+- Enable participant count in a session.
+- Enable automatic localization of a session in a map.
+- Enable automatic clearing of expired sessions.
+- Add personal profile menu.
 
 ## Acknowledgements
 
-- Many thanks to everyone who supported me along the road that took me here. What a hell of a ride.
+- Many thanks to everyone who supported me along the road that took me here.
 
 ## Contact
 

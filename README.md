@@ -48,7 +48,7 @@ With this app I want to create a hub for people to help them find someone near t
 ## Features
 
 - Create a unique user and get into the Bloody Nose experience
-- Create, update and delete your own trainning sessions.
+- Create, update and delete your own training sessions.
 - Filter sessions based on the style you prefer.
 
 ## Screenshots
